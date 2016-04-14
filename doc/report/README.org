@@ -1,0 +1,14 @@
+* Install dependencies
+
+- texlive 
+
+* Build instructions
+
+In a terminal
+
+#+BEGIN_SRC bash
+  mkdir build
+  cd build
+  cmake ..
+  make 
+#+END_SRC
