@@ -7,7 +7,6 @@ file(GLOB sources "*.pml")
 function(make_binary pmlfile)
 
     get_filename_component(shortfile ${pmlfile} NAME_WE)
-    message(${CMAKE_CURRENT_BINARY_DIR}/${shortfile})
     add_custom_command (
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${shortfile}.c
         COMMAND spin -m -a ${pmlfile}
@@ -19,6 +18,5 @@ endfunction(make_binary)
 
 
 foreach(source ${sources})
-    message (${source})
     make_binary (${source})
 endforeach()
