@@ -1,1 +1,6 @@
 * Camelot
+
+** Dependencies
+
+- cmake
+- spin
