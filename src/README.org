@@ -1,0 +1,9 @@
+* Build instructions
+
+#+BEGIN_SRC bash
+  mkdir build
+  cd build
+  cmake ..
+  make
+#+END_SRC
+
