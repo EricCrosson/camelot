@@ -37,9 +37,9 @@ function(make_binary pmlfile)
         make_promela_command(${pmlfile} ${assertfile})
     endforeach()
     # if no assertfiles were defined, still have to compile
-    IF (NOT assertfiles)
+    if (not assertfiles)
         make_simple_promela_command(${pmlfile})
-    ENDIF()
+    endif()
 
 endfunction(make_binary)
 
