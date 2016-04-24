@@ -9,7 +9,5 @@ install:
   - sudo make -C Src6.4.5
   - sudo make -C Src6.4.5 install
 
-before_script:
-  - mkdir build
 script:
-  - cd build && cmake .. && make
+  - cd src && mkdir build && cd build && cmake .. && make
