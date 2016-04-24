@@ -5,9 +5,8 @@ install:
   - sudo apt-get update -qq
   - sudo apt-get install -y -qq cmake make gcc bison build-essential
   - sudo wget http://spinroot.com/spin/Src/src645.tar.gz -O /tmp/spin.tar.gz
-  - sudo tar -xf /tmp/spin.tar.gz
-  - ls /tmp/
-  - sudo make -C /tmp/spin
+  - sudo tar xf /tmp/spin.tar.gz
+  - sudo make -C Src6.4.5
   - sudo make install
 
 before_script:
