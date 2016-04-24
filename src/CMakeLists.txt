@@ -1,50 +1,48 @@
 cmake_minimum_required (VERSION 3.2)
-project (Promela)
+project (formal-verification-final-project)
 
-SET (ARGS "-DN=5" CACHE STRING "Compile-time arguments passed to spin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-function(make_simple_promela_command pmlfile)
-    get_filename_component(shortfile ${pmlfile} NAME_WE)
+
+# I WONDER: does this work with multiple srcs? first line would be the worrisome
+# part
+function(make_promela_binary_no_tests srcs)
     add_custom_command (
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${shortfile}.c
+        OUTPUT ${CMAKE_BINARY_DIR}/pan.c
         COMMAND spin -m -a ${ARGS} ${pmlfile}
-        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_CURRENT_BINARY_DIR}/${shortfile}.c
+        COMMAND mv ${CMAKE_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c
     )
-    add_executable (${shortfile} ${CMAKE_CURRENT_BINARY_DIR}/${shortfile}.c)
-endfunction(make_simple_promela_command)
+    add_executable (${PROJECT_NAME} ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c)
+endfunction(make_promela_binary_no_tests)
 
-function(make_promela_command pmlfile assertfile)
-    get_filename_component(shortfile ${pmlfile} NAME_WE)
-    get_filename_component(assertname ${assertfile} NAME)
-    get_filename_component(assertname ${assertname} EXT)
-    string(REPLACE "." "" assertname ${assertname})
+
+function(make_promela_binary assertfile srcs)
+    # get name of assert
+    get_filename_component(assertname ${assertfile} NAME_WE)
+
     add_custom_command (
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${shortfile}_${assertname}.c
-        COMMAND spin -m -a ${ARGS} -N ${assertfile} ${pmlfile}
-        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_CURRENT_BINARY_DIR}/${shortfile}_${assertname}.c
+        OUTPUT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c
+        COMMAND spin -m -a ${ARGS} -N ${assertfile} ${srcs}
+        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c
+        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.* ${CMAKE_BINARY_DIR}/
     )
-    add_executable (${shortfile}_${assertname} ${CMAKE_CURRENT_BINARY_DIR}/${shortfile}_${assertname}.c)
-endfunction(make_promela_command)
+    add_executable (${assertname} ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c)
+endfunction(make_promela_binary)
 
-function(make_binary pmlfile)
-    get_filename_component(shortfile ${pmlfile} NAME_WE)
-    file(GLOB assertfiles "${shortfile}.*")
+
+# Given the srcs necessary to compile a test, build one binary per assertfile,
+# or one binary with all srcs if no assertfiles exist
+function(make_binaries srcs)
+    file(GLOB_RECURSE assertfiles "../test/*")
     # if assert files are defined, compile with assert files
     foreach(assertfile ${assertfiles})
-        if(assertfile STREQUAL pmlfile)
-            continue()
-        endif()
-        make_promela_command(${pmlfile} ${assertfile})
+        make_promela_binary(${assertfile} ${srcs})
     endforeach()
     # if no assertfiles were defined, still have to compile
-    if (not assertfiles)
-        make_simple_promela_command(${pmlfile})
+    if (NOT assertfiles)
+        make_promela_binary_no_tests(${srcs})
     endif()
+endfunction(make_binaries)
 
-endfunction(make_binary)
 
-
-file(GLOB sources "*.pml")
-foreach(source ${sources})
-    make_binary (${source})
-endforeach()
+add_subdirectory (lamport)
