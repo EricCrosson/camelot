@@ -2,5 +2,6 @@
 
 ** Dependencies
 
+- make
 - cmake
-- spin
+- pin
