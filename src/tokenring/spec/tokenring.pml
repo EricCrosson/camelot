@@ -34,17 +34,17 @@ init {
 }
 
 proctype A(short index) {
-do
-:: atomic{ state[index] == state[N-1] -> if
-                                         :: (state[index] + 1 == N) -> state[index] = 0
-                                         :: (state[index] + 1 < N) -> state[index] = state[index] + 1
-                                         fi
-         };
-od
+    do
+    :: atomic{ state[index] == state[N-1] -> if
+                                             :: (state[index] + 1 == N) -> state[index] = 0
+                                             :: (state[index] + 1 < N) -> state[index] = state[index] + 1
+                                             fi
+             };
+    od
 }
 
 proctype B(short index) {
-do
-:: atomic{ (state[index] != state[index - 1]) -> state[index] = state[index - 1] };
-od
+    do
+    :: atomic{ (state[index] != state[index - 1]) -> state[index] = state[index - 1] };
+    od
 }
