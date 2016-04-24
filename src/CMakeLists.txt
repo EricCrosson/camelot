@@ -8,9 +8,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # part
 function(make_promela_binary_no_tests srcs)
     add_custom_command (
-        OUTPUT ${CMAKE_BINARY_DIR}/pan.c
-        COMMAND spin -m -a ${ARGS} ${pmlfile}
-        COMMAND mv ${CMAKE_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c
+        OUTPUT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c
+        COMMAND spin -m -a ${ARGS} ${srcs}
+        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c
+        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.* ${CMAKE_BINARY_DIR}/
     )
     add_executable (${PROJECT_NAME} ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c)
 endfunction(make_promela_binary_no_tests)
@@ -46,3 +47,4 @@ endfunction(make_binaries)
 
 
 add_subdirectory (lamport)
+add_subdirectory (tokenring)
