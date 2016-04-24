@@ -5,3 +5,5 @@
 - make
 - cmake
 - spin
+
+See [[file:src/README.org][build instructions]].
