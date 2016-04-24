@@ -1,5 +1,7 @@
 * Camelot
 
+[[https://travis-ci.org/stormosson/camelot][[[https://travis-ci.org/stormosson/camelot.svg?branch=ci]]]]
+
 ** Dependencies
 
 - make
