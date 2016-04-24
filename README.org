@@ -4,4 +4,4 @@
 
 - make
 - cmake
-- pin
+- spin
