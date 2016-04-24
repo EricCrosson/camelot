@@ -9,3 +9,4 @@
   make
 #+END_SRC
 
+Binaries will be placed in the =build/bin= directory
