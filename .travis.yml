@@ -7,7 +7,7 @@ install:
   - sudo wget http://spinroot.com/spin/Src/src645.tar.gz -O /tmp/spin.tar.gz
   - sudo tar xf /tmp/spin.tar.gz
   - sudo make -C Src6.4.5
-  - sudo make install
+  - sudo make -C Src6.4.5 install
 
 before_script:
   - mkdir build
