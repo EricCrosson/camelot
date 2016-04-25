@@ -1,8 +1,8 @@
 Camelot
 =======
 
-[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot) [![Code Climate](https://codeclimate.com/github/stormosson/camelot/badges/gpa.svg)](https://codeclimate.com/github/stormosson/camelot)
-
+[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot)
+[![Issue Count](https://codeclimate.com/github/stormosson/camelot/badges/issue_count.svg)](https://codeclimate.com/github/stormosson/camelot)
 
 Overview
 --------
