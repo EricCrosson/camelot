@@ -52,7 +52,7 @@ See [build instructions].
   [Dining Philosophers]: http://dl.acm.org/citation.cfm?id=1804
   [Report]: doc/report/report.pdf
   [Presentation]: doc/presentation/presentation.pdf
-  [University of Texas']: http://www.utexas.edu/
+  [University of Texas]: http://www.utexas.edu/
   [Cockrell School of Engineering]: http://www.engr.utexas.edu/
   [Professor Vijay Garg]: http://users.ece.utexas.edu/~garg/
   [EE 360P]: http://www.ece.utexas.edu/undergraduate/courses/360p
