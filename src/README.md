@@ -10,7 +10,7 @@ possible definition
 
 Consisting of more than methodology and code, _reproducible research_
 contains methodology, code, parameters, and a build environment. This
-information permits other humans and even [robots] to reproduce the published
+information permits other humans and even [robots] to confirm the published
 results. To reproduce some research of your own follow the Setup and then Build
 instructions.
 
