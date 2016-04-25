@@ -28,7 +28,7 @@ Dependencies
 -   make
 -   cmake
 -   [spin]
--   your favorite c compiler
+-   gcc
 
 See [build instructions].
 
