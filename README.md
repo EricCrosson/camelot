@@ -22,20 +22,19 @@ Verified Algorithms
 
 - [Token Ring]
 - [Lamport]
-- [Ricart and Agrawala]
 
 
 Dependencies
 ------------
 
+-   gcc
 -   make
 -   cmake
--   [spin]
--   gcc
 -   bison
+-   [spin]
 
 
-See [build instructions].
+See project [build instructions].
 
 
   [build instructions]: https://github.com/stormosson/camelot/tree/master/src
