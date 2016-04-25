@@ -3,6 +3,7 @@ language: c
 branches:
   only:
     - master
+    - ci
 
 install:
   - sudo apt-get update -qq
