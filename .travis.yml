@@ -7,7 +7,7 @@ branches:
 
 install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y -qq cmake make gcc bison build-essential texlive-latex-{recommended,extra} texlive-fonts-recommended poppler-utils latex2html
+  - sudo apt-get install -y -qq cmake make gcc bison build-essential texlive-latex-{recommended,extra} texlive-fonts-recommended poppler-utils latex2html texlive-humanities
   - sudo wget http://spinroot.com/spin/Src/src645.tar.gz -O /tmp/spin.tar.gz
   - sudo tar xf /tmp/spin.tar.gz
   - sudo make -C Src6.4.5
