@@ -4,7 +4,7 @@
 
 bit _Permission[N];
 bit _Executing[N];
-bit _Priority[N];  /*Lower priority goes first*/
+bit _Priority[N];  /* Lower priority goes first */
 byte in_cs;
 
 init {
@@ -18,6 +18,8 @@ init {
   }
 }
 
+/* Returns the next process id with permission to enter
+ * critical section. */
 inline Low(k, i) {
   d_step {
   i = 0;
@@ -30,6 +32,7 @@ inline Low(k, i) {
   }
 }
 
+/* Defines one of the N processes contesting for mutual exclusion. */
 proctype P(byte id) {
   byte i, k;
   bit temp;
@@ -59,6 +62,8 @@ Wait:
   :: (i % N != k-1) && _Permission[i%N] == true; goto NonCritical;
   :: atomic { (i % N == k-1) -> in_cs++; } break;
   od;
+
+/* Resets the process variables after exiting CS */ 
 Critical:
   atomic { temp = 1 - _Priority[id]; in_cs--; }
   _Priority[id] = temp;
