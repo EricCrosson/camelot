@@ -22,13 +22,8 @@ Verified Algorithms
 - [Lamport]
 - [Ricart and Agrawala]
 
-Dependencies
-------------
-
--   make
--   cmake
--   [spin]
--   your favorite c compiler
+Reproducible Research
+---------------------
 
 See [build instructions].
 
