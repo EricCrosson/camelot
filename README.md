@@ -41,7 +41,7 @@ See [build instructions].
   [build instructions]: src
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
   [spin]: http://spinroot.com/spin/Man/README.html
-  [Lamport]: http://dl.acm.org/citation.cfm?id=359563
+  [Lamport's]: http://dl.acm.org/citation.cfm?id=359563
   [Token Ring]: http://dl.acm.org/citation.cfm?id=802819&CFID=776312108&CFTOKEN=18774545
   [Szymanski's]: http://dl.acm.org/citation.cfm?id=55425
   [Dining Philosophers]: http://dl.acm.org/citation.cfm?id=1804
