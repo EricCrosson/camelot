@@ -48,3 +48,4 @@ endfunction(make_binaries)
 
 add_subdirectory (lamport)
 add_subdirectory (tokenring)
+add_subdirectory (ricart)
