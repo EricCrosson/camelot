@@ -19,6 +19,6 @@ install:
 
 script:
   - cd src && mkdir build && cd build && cd ../..
-  - docker run -it -v $(pwd):/data spin /bin/bash -c "cd /data/src/build && cmake .. && make"
+  - docker run -it -v $(pwd):/data hamroctopus/spin /bin/bash -c "cd /data/src/build && cmake .. && make"
   - cd doc/report && mkdir build && cd build && cmake .. && make && cd .. && cd .. && cd ..
   - echo "cd doc/presentation && mkdir build && cd build && cmake .. && make && cd .. && cd .. && cd .."
