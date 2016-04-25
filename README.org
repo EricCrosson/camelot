@@ -1,6 +1,6 @@
 * Camelot
 
-[[https://travis-ci.org/stormosson/camelot][[[https://travis-ci.org/stormosson/camelot.svg?branch=ci]]]]
+[[https://travis-ci.org/stormosson/camelot.svg?branch=master][Build Status]]
 
 ** Dependencies
 
