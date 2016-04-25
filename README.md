@@ -1,8 +1,8 @@
 Camelot
 =======
 
-[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot)
-[![Issue Count](https://codeclimate.com/github/stormosson/camelot/badges/issue_count.svg)](https://codeclimate.com/github/stormosson/camelot)
+[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot) [![Code Climate](https://codeclimate.com/github/stormosson/camelot/badges/gpa.svg)](https://codeclimate.com/github/stormosson/camelot)
+
 
 Overview
 --------
@@ -15,24 +15,26 @@ Objective:
 
 This assignment is from the [Spring 2012 Final Project list].
 
-Deliverables
-------------
-
-### Verified Algorithms
+Verified Algorithms
+-------------------
 
 - [Token Ring]
 - [Lamport]
+- [Ricart and Agrawala]
 
+Dependencies
+------------
 
-Reproducible Research
----------------------
+-   make
+-   cmake
+-   [spin]
+-   your favorite c compiler
 
 See [build instructions].
 
-  [build instructions]: src
+  [build instructions]: https://github.com/stormosson/camelot/tree/master/src
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
   [spin]: http://spinroot.com/spin/Man/README.html
   [Lamport]: http://users.ece.utexas.edu/~garg/dist1/lecdist/slides/l6-mutex/slide.pdf
   [Token Ring]: https://en.m.wikipedia.org/wiki/Token_ring
   [Ricart and Agrawala]: https://en.m.wikipedia.org/wiki/Ricart%E2%80%93Agrawala_algorithm
-  [docker]: https://www.docker.com/
