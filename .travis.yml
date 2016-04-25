@@ -5,23 +5,20 @@ branches:
     - master
     - ci
 
+sudo: required
+services:
+  - docker
+
 before_install:
   - git submodule update --init --recursive
 
 install:
+  - docker pull hamroctopus/spin
   - sudo apt-get update -qq
   - sudo apt-get install -y -qq cmake make gcc bison build-essential texlive-latex-{recommended,extra} texlive-fonts-{recommended,extra} poppler-utils latex2html texlive-humanities texlive
-  - sudo wget https://github.com/scottkosty/install-tl-ubuntu/raw/master/install-tl-ubuntu && sudo chmod +x ./install-tl-ubuntu && sudo ./install-tl-ubuntu
-  - sudo t1mgr install opensans
-  - sudo wget http://spinroot.com/spin/Src/src645.tar.gz -O /tmp/spin.tar.gz
-  - sudo tar xf /tmp/spin.tar.gz
-  - sudo make -C Src6.4.5
-  - sudo make -C Src6.4.5 install
-  - sudo wget --no-check-certificate https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz -O /tmp/cmake.tar.gz
-  - sudo tar xf /tmp/cmake.tar.gz
-  - cd cmake-3.5.2 && sudo cmake . && sudo make && sudo make install && cd ..
 
 script:
-  - cd src && mkdir build && cd build && cmake .. && make && cd .. && cd ..
+  - cd src && mkdir build && cd build && cd ../..
+  - docker run -it -v $(pwd):/data hamroctopus/spin /bin/bash -c "cd /data/src/build && cmake .. && make"
   - cd doc/report && mkdir build && cd build && cmake .. && make && cd .. && cd .. && cd ..
   - echo "cd doc/presentation && mkdir build && cd build && cmake .. && make && cd .. && cd .. && cd .."
