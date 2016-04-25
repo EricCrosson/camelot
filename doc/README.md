@@ -1,5 +1,5 @@
-Doc
-===
+Documentation Deliverables
+==========================
 
 The assignment calls for a [term paper] and a [presentation].
 
@@ -11,11 +11,19 @@ The assignment calls for a [term paper] and a [presentation].
 > your project. The paper should clearly identify which portions of your
 > software project have been written by you (or modified by you).
 
-The term paper was written in [LaTeX], for its [obvious advantages]. The
-presentation was also typset with LaTeX, using [beamer].
+The [term paper] was written in [LaTeX], for its [obvious advantages]. The
+[presentation] was also typset with LaTeX, using [beamer].
 
   [term paper]: report/report.pdf
   [presentation]: presentation/presentation.pdf
   [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
   [LaTeX]: https://www.latex-project.org/
   [obvious advantages]: http://nitens.org/taraborelli/latex
+  
+Build instructions
+------------------
+
+    mkdir build
+    cd build
+    cmake ..
+    make
