@@ -25,10 +25,7 @@ Verified Algorithms
 Dependencies
 ------------
 
--   make
--   cmake
--   [spin]
--   your favorite c compiler
+- [docker]
 
 See [build instructions].
 
@@ -38,3 +35,4 @@ See [build instructions].
   [Lamport]: http://users.ece.utexas.edu/~garg/dist1/lecdist/slides/l6-mutex/slide.pdf
   [Token Ring]: https://en.m.wikipedia.org/wiki/Token_ring
   [Ricart and Agrawala]: https://en.m.wikipedia.org/wiki/Ricart%E2%80%93Agrawala_algorithm
+  [docker]: https://www.docker.com/
