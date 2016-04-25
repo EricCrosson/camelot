@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-Doc
-===
-=======
 Documentation Deliverables
 ==========================
->>>>>>> 6427d1c64e2ad692f19578423267b1d67d2d3aaf
 
 The assignment calls for a [term paper] and a [presentation].
 
@@ -16,22 +11,10 @@ The assignment calls for a [term paper] and a [presentation].
 > your project. The paper should clearly identify which portions of your
 > software project have been written by you (or modified by you).
 
-<<<<<<< HEAD
-The term paper was written in [LaTeX], for its [obvious advantages]. The
-presentation was also typset with LaTeX, using [beamer].
-=======
 The [term paper] was written in [LaTeX], for its [obvious advantages]. The
 [presentation] was also typset with LaTeX, using [beamer].
->>>>>>> 6427d1c64e2ad692f19578423267b1d67d2d3aaf
 
-  [term paper]: report/report.pdf
-  [presentation]: presentation/presentation.pdf
-  [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
-  [LaTeX]: https://www.latex-project.org/
-  [obvious advantages]: http://nitens.org/taraborelli/latex
-<<<<<<< HEAD
-=======
-  
+
 Build instructions
 ------------------
 
@@ -41,4 +24,11 @@ To build a pdf, execute the following from inside either `presentation` or `repo
     cd build
     cmake ..
     make
->>>>>>> 6427d1c64e2ad692f19578423267b1d67d2d3aaf
+
+
+  [term paper]: report/report.pdf
+  [presentation]: presentation/presentation.pdf
+  [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
+  [LaTeX]: https://www.latex-project.org/
+  [obvious advantages]: http://nitens.org/taraborelli/latex
+  
