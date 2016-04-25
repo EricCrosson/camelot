@@ -19,9 +19,10 @@ Dependencies
 
 -   make
 -   cmake
--   spin
+-   [spin]
 
 See [build instructions].
 
   [build instructions]: https://github.com/stormosson/camelot/tree/master/src
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
+  [spin]: http://spinroot.com/spin/Man/README.html
