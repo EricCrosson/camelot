@@ -11,7 +11,7 @@ To build all promela models, execute the following from inside this directory
 
 Binaries will be placed in the =build/bin= directory.
 
-** Clean up
+** Clean
 
 #+BEGIN_SRC bash
   rm -rf build

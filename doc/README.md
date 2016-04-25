@@ -1,5 +1,5 @@
-Doc
-===
+Documentation Deliverables
+==========================
 
 The assignment calls for a [term paper] and a [presentation].
 
@@ -19,3 +19,11 @@ presentation was also typset with LaTeX, using [beamer].
   [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
   [LaTeX]: https://www.latex-project.org/
   [obvious advantages]: http://nitens.org/taraborelli/latex
+  
+Build instructions
+------------------
+
+    mkdir build
+    cd build
+    cmake ..
+    make
