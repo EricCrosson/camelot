@@ -11,7 +11,18 @@ To build all promela models, execute the following from inside this directory
 
 Binaries will be placed in the =build/bin= directory.
 
-** Clean
+** Pass custom flags to spin
+
+#+BEGIN_SRC bash
+  mkdir build
+  cd build
+  cmake -DARGS:STRING="-N 50"
+  make
+#+END_SRC
+
+which is unfortunately verbose, so shout if you know a cleaner way.
+
+* Build clean
 
 #+BEGIN_SRC bash
   rm -rf build
