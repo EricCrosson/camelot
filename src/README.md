@@ -1,3 +1,19 @@
+Reproducible Research
+=====================
+
+What is Reproducible Research? [Hothorn, Held and Friede] offer the following
+possible definition
+
+> a piece of reproducible research is an article that provides readers with all
+> the materials that are needed to produce the same results as described in the
+> publication
+
+Consisting of more than methodology and code, _reproducible research_ is
+contains methodology, code, parameters, and a build environment. This
+information permits deterministic and even [automated] builds. To create a build
+environment of your own follow the Setup and then Build instructions.
+
+
 Setup build environment
 =======================
 
@@ -7,7 +23,7 @@ on a manual setup.
 
 
 Prebuilt environment
-====================
+--------------------
 
 [Install docker]. The following code will pull down the build environment, mount
 your locally cloned version of this repository, and give you a shell in the
@@ -21,7 +37,7 @@ Navigate to `/data/src/` and proceed to the build instructions.
 
 
 Manual environment setup
-========================
+------------------------
 
 Install the following dependencies
 
@@ -71,3 +87,5 @@ Build clean
   [dockerhub]: https://hub.docker.com/r/hamroctopus/camelot/
   [Install docker]: https://docs.docker.com/engine/installation/
   [spin]: http://spinroot.com/spin/Man/README.html
+  [Hothorn, Held and Friede]: https://www.r-project.org/nosvn/conferences/useR-2011/TalkSlides/Contributed/16Aug_1115_FocusI_4-ReportingWorkflows_3-Leha.pdf
+  [automated]: https://travis-ci.org/stormosson/camelot
