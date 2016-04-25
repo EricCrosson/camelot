@@ -1,7 +1,8 @@
 Camelot
 =======
 
-[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot) [![Code Climate](https://codeclimate.com/github/stormosson/camelot/badges/gpa.svg)](https://codeclimate.com/github/stormosson/camelot)
+[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot) 
+[![Issue Count](https://codeclimate.com/github/stormosson/camelot/badges/issue_count.svg)](https://codeclimate.com/github/stormosson/camelot)
 
 
 Overview
@@ -15,12 +16,14 @@ Objective:
 
 This assignment is from the [Spring 2012 Final Project list].
 
+
 Verified Algorithms
 -------------------
 
 - [Token Ring]
 - [Lamport]
 - [Ricart and Agrawala]
+
 
 Dependencies
 ------------
@@ -31,7 +34,9 @@ Dependencies
 -   gcc
 -   bison
 
+
 See [build instructions].
+
 
   [build instructions]: https://github.com/stormosson/camelot/tree/master/src
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
