@@ -20,7 +20,9 @@ Verified Algorithms
 
 - [Token Ring]
 - [Lamport]
-- [Ricart and Agrawala]
+
+Deliverables
+------------
 
 Dependencies
 ------------
