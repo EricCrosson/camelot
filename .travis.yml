@@ -24,4 +24,4 @@ install:
 script:
   - cd src && mkdir build && cd build && cmake .. && make && cd .. && cd ..
   - cd doc/report && mkdir build && cd build && cmake .. && make && cd .. && cd .. && cd ..
-  - cd doc/presentation && mkdir build && cd build && cmake .. && make && cd .. && cd .. && cd ..
+  - echo "cd doc/presentation && mkdir build && cd build && cmake .. && make && cd .. && cd .. && cd .."
