@@ -8,6 +8,10 @@ Camelot
 Overview
 --------
 
+This repository fulfills an assignment from the [University of Texas']
+[Cockrell School of Engineering] [EE 360P] taught by [Professor Vijay Garg].
+
+
 Objective:
 
 > Promela Models for Distributed Programs Specify and verify the correctness of
@@ -47,3 +51,7 @@ See [build instructions].
   [Dining Philosophers]: http://dl.acm.org/citation.cfm?id=1804
   [Report]: doc/report/report.pdf
   [Presentation]: doc/presentation/presentation.pdf
+  [University of Texas']: http://www.utexas.edu/
+  [Cockrell School of Engineering]: http://www.engr.utexas.edu/
+  [Professor Vijay Garg]: http://users.ece.utexas.edu/~garg/
+  [EE 360P]: http://www.ece.utexas.edu/undergraduate/courses/360p
