@@ -19,13 +19,6 @@ docker container.
 
 Navigate to `/data/src/` and proceed to the build instructions.
 
-    mkdir build
-    cd build
-    cmake ..
-    make
-
-Binaries will be placed in the `build/bin` directory.
-
 
 Manual environment setup
 ========================
@@ -38,6 +31,8 @@ Install the following dependencies
 -   bison
 -   gcc
 -   g++
+
+and proceed to the build instructions.
 
 
 Build instructions
