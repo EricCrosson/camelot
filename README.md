@@ -20,7 +20,6 @@ Verified Algorithms
 
 - [Token Ring]
 - [Lamport]
-- [Ricart and Agrawala]
 
 Reproducible Research
 ---------------------
@@ -32,4 +31,3 @@ See [build instructions].
   [spin]: http://spinroot.com/spin/Man/README.html
   [Lamport]: http://users.ece.utexas.edu/~garg/dist1/lecdist/slides/l6-mutex/slide.pdf
   [Token Ring]: https://en.m.wikipedia.org/wiki/Token_ring
-  [Ricart and Agrawala]: https://en.m.wikipedia.org/wiki/Ricart%E2%80%93Agrawala_algorithm
