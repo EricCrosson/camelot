@@ -11,3 +11,5 @@ Presentation
   [official]: http://johntfoster.github.io/posts/cockrell-school-beamer-template.html
   [Cockrell School of Engineering]: http://www.engr.utexas.edu/
   [beamer template]: https://github.com/johntfoster/cockrell-school-latex-beamer-template
+  [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
+  [LaTeX]: https://www.latex-project.org/
