@@ -18,8 +18,10 @@ init {
   }
 }
 
+
 /* Returns the next process id with permission to enter
  * critical section. */
+
 inline Low(k, i) {
   d_step {
   i = 0;
@@ -32,6 +34,7 @@ inline Low(k, i) {
   }
 }
 
+
 /* Defines one of the N processes contesting for mutual exclusion. */
 proctype P(byte id) {
   byte i, k;
@@ -40,6 +43,7 @@ NonCritical:
   _IsMyTurn[id] = true;
 Wait:
   _RequestCS[id] = true;
+
   Low(k, i);
   if
   :: k != id -> i = k;
