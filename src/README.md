@@ -30,8 +30,8 @@ Prebuilt environment
 your locally cloned version of this repository, and give you a shell in the
 docker container.
 
-    docker pull hamroctopus/camelot
-    docker run -it -v </path/to/local/repo>:/data camelot
+    docker pull hamroctopus/spin
+    docker run -it -v </path/to/local/repo>:/data spin
 
 
 Navigate to `/data/src/` and proceed to the build instructions.
@@ -85,7 +85,7 @@ Build clean
 
 
   [docker]: https://www.docker.com/
-  [dockerhub]: https://hub.docker.com/r/hamroctopus/camelot/
+  [dockerhub]: https://hub.docker.com/r/hamroctopus/spin/
   [Install docker]: https://docs.docker.com/engine/installation/
   [spin]: http://spinroot.com/spin/Man/README.html
   [Hothorn, Held and Friede]: https://www.r-project.org/nosvn/conferences/useR-2011/TalkSlides/Contributed/16Aug_1115_FocusI_4-ReportingWorkflows_3-Leha.pdf
