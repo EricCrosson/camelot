@@ -15,23 +15,21 @@ Objective:
 
 This assignment is from the [Spring 2012 Final Project list].
 
-Verified Algorithms
--------------------
+Deliverables
+------------
+
+### Verified Algorithms
 
 - [Token Ring]
 - [Lamport]
 
-Deliverables
-------------
 
-Dependencies
-------------
-
-- [docker]
+Reproducible Research
+---------------------
 
 See [build instructions].
 
-  [build instructions]: https://github.com/stormosson/camelot/tree/master/src
+  [build instructions]: src/README.md
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
   [spin]: http://spinroot.com/spin/Man/README.html
   [Lamport]: http://users.ece.utexas.edu/~garg/dist1/lecdist/slides/l6-mutex/slide.pdf

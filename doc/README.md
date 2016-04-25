@@ -23,6 +23,8 @@ The [term paper] was written in [LaTeX], for its [obvious advantages]. The
 Build instructions
 ------------------
 
+To build a pdf, execute the following from inside either `presentation` or `report`
+
     mkdir build
     cd build
     cmake ..
