@@ -16,11 +16,22 @@ Objective:
 
 This assignment is from the [Spring 2012 Final Project list].
 
-Verified Algorithms
--------------------
+
+Deliverables
+------------
+
+### Verified Algorithms
 
 - [Token Ring]
-- [Lamport]
+- [Lamport's]
+- [Szymanski's]
+- [Dining Philosophers]
+
+### Findings
+
+- [Report]
+- [Presentation]
+
 
 Reproducible Research
 ---------------------
@@ -30,5 +41,9 @@ See [build instructions].
   [build instructions]: src
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
   [spin]: http://spinroot.com/spin/Man/README.html
-  [Lamport]: http://users.ece.utexas.edu/~garg/dist1/lecdist/slides/l6-mutex/slide.pdf
-  [Token Ring]: https://en.m.wikipedia.org/wiki/Token_ring
+  [Lamport]: http://dl.acm.org/citation.cfm?id=359563
+  [Token Ring]: http://dl.acm.org/citation.cfm?id=802819&CFID=776312108&CFTOKEN=18774545
+  [Szymanski's]: http://dl.acm.org/citation.cfm?id=55425
+  [Dining Philosophers]: http://dl.acm.org/citation.cfm?id=1804
+  [Report]: doc/report/report.pdf
+  [Presentation]: doc/presentation/presentation.pdf
