@@ -12,7 +12,7 @@ The assignment calls for a [term paper] and a [presentation].
 > software project have been written by you (or modified by you).
 
 The [term paper] was written in [LaTeX], for its [obvious advantages]. The
-presentation was also typset with LaTeX, using [beamer].
+[presentation] was also typset with LaTeX, using [beamer].
 
   [term paper]: report/report.pdf
   [presentation]: presentation/presentation.pdf
