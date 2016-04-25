@@ -1,0 +1,28 @@
+* Abstract
+** This is simply an italicized executive summary at the beginning (not its own section)
+* Introduction
+** State the problem statement: specify and verify the correctness of four different distributed algorithms using Promela language and the SPIN model checker.
+** Contributions
+*** Eric: build system (dir structure, cmake files), Ricart, Lamport
+*** Stormy: Lamport, assistance with cmake files
+*** Daniel: (incomplete) Token ring
+*** Nhan: (incomplete) Central server
+* Project Description
+** Talk about Promela
+** Talk about SPIN
+** Algorithms chosen: Central Server, Token Ring, Lamport, Ricart
+** Talk about each algorithm in detail (paragraph each?)
+* Design Alternatives
+** Maybe discuss why we chose what we did
+** Since we are confined to using Promela, maybe discuss other types of verification software and pros/cons
+* Performance results
+** Lot of graphs (2-4) per algorithm
+* Conclusions
+** Summarize why each algorithm was correct
+** Review our experience with promela
+* References
+** Inspiration for choosing the four that we did: https://www.cs.rutgers.edu/~pxk/417/notes/10-mutex.html
+** Central Server: NO SOURCE BECAUSE WE HAVE NOT HEARD FROM THIS GROUP MEMBER
+** Token Ring: http://spinroot.com/spin/Workshops/ws96/Sh.pdf (NOT SUFFICIENT)
+** Lamport: http://www.ueda.info.waseda.ac.jp/~kobayashi/Promela/benchmark/mutex_L_N3.html
+** Ricart: None yet
