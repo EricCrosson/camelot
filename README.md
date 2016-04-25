@@ -12,7 +12,7 @@ Objective:
 > at least four different distributed algorithms using Promela language and the
 > SPIN model checker.
 
-This assignment is one from the [Spring 2012 Final Project list].
+This assignment is from the [Spring 2012 Final Project list].
 
 Verified Algorithms
 -------------------
