@@ -2,7 +2,10 @@
 
                 /* LTL metamacros are prepared for 2 <= N <= 4, if you wish to use different value of N, you must modify
                 * them acordingly in lib/ltls.pml. In case you forget to do that you will get compile time error. */
-/* 01 */        #define N 4                           /* liczba procesow */
+/* 01 */
+#ifndef N
+#define N 4                           /* liczba procesow */
+#endif
 #ifdef N_OVERRIDE
 #warning "redefined number of processes in the model"
 #undef N
