@@ -8,8 +8,9 @@ Camelot
 Overview
 --------
 
-This repository fulfills an assignment from the [University of Texas']
-[Cockrell School of Engineering] [EE 360P] taught by [Professor Vijay Garg].
+This repository fulfills the final project from the [University of Texas]
+[Cockrell School of Engineering] [EE 360P] curriculum taught by
+[Professor Vijay Garg].
 
 
 Objective:
