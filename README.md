@@ -29,6 +29,7 @@ Dependencies
 -   cmake
 -   [spin]
 -   gcc
+-   bison
 
 See [build instructions].
 
