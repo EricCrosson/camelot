@@ -33,7 +33,7 @@ docker container.
     docker run -it -v </path/to/local/repo>:/data spin
 
 
-Navigate to `/data/src/` and proceed to the build instructions.
+Navigate to `/data/src/` and proceed to the [build instructions].
 
 
 Manual environment
@@ -91,3 +91,4 @@ Build clean
   [robots]: https://travis-ci.org/stormosson/camelot/branches
   [Setup]: #setup-build-environment
   [Build]: #build-instructions
+  [build instructions]: #build-instructions
