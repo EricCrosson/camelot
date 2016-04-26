@@ -8,11 +8,10 @@ possible definition
 > the materials that are needed to produce the same results as described in the
 > publication
 
-Consisting of more than methodology and code, _reproducible research_
-contains methodology, code, parameters, and a build environment. This
-information permits other humans and even [robots] to confirm the published
-results. To reproduce some research of your own follow the Setup and then Build
-instructions.
+Consisting of more than methodology and code, _reproducible research_ contains
+methodology, code, parameters, and a build environment. This information permits
+other humans and even [robots] to confirm the published results. To reproduce
+some research of your own follow the [Setup] and then [Build] instructions.
 
 
 Setup build environment
@@ -37,8 +36,8 @@ docker container.
 Navigate to `/data/src/` and proceed to the build instructions.
 
 
-Manual environment setup
-------------------------
+Manual environment
+------------------
 
 Install the following dependencies
 
@@ -90,3 +89,5 @@ Build clean
   [spin]: http://spinroot.com/spin/Man/README.html
   [Hothorn, Held and Friede]: https://www.r-project.org/nosvn/conferences/useR-2011/TalkSlides/Contributed/16Aug_1115_FocusI_4-ReportingWorkflows_3-Leha.pdf
   [robots]: https://travis-ci.org/stormosson/camelot/branches
+  [Setup]: #Setup-build-environment
+  [Build]: #Build-instructions
