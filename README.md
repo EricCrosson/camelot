@@ -15,9 +15,8 @@ This repository fulfills the final project from the [University of Texas]
 
 Objective:
 
-> Promela Models for Distributed Programs Specify and verify the correctness of
-> at least four different distributed algorithms using Promela language and the
-> SPIN model checker.
+> Specify and verify the correctness of at least four different distributed
+> algorithms using Promela language and the SPIN model checker.
 
 This assignment is from the [Spring 2012 Final Project list].
 
