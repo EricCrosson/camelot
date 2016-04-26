@@ -66,8 +66,8 @@ Build clean
     rm -rf build
 
 
-  [term paper]: report/report.pdf
-  [presentation]: presentation/presentation.pdf
+  [term paper]: https://github.com/stormosson/camelot/tree/deliverables/report.pdf
+  [presentation]: https://github.com/stormosson/camelot/tree/deliverables/presentation.pdf
   [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
   [LaTeX]: https://www.latex-project.org/
   [obvious advantages]: http://nitens.org/taraborelli/latex
