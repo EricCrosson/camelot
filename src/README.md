@@ -30,7 +30,7 @@ your locally cloned version of this repository, and give you a shell in the
 docker container.
 
     docker pull hamroctopus/spin
-    docker run -it -v </path/to/local/repo>:/data spin
+    docker run -it -v </path/to/local/repo>:/data hamroctopus/spin
 
 
 Navigate to `/data/src/` and proceed to the [build instructions].
