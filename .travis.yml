@@ -18,8 +18,8 @@ install:
 script:
   - mkdir -p src/build doc/report/build doc/presentation/build
   - docker run -t -v $(pwd):/data hamroctopus/spin /bin/bash -c "cd /data/src/build && cmake .. && make"
-  - docker run -t -v $(pwd):/data hamroctopus/latex /bin/bash -c "cd /data/doc/report/build && cmake .. && make"
-  - docker run -t -v $(pwd):/data hamroctopus/latex /bin/bash -c "cd /data/doc/presentation/build && cmake .. && make"
+  - docker run -t -v $(pwd):/data hamroctopus/latex-cmake /bin/bash -c "cd /data/doc/report/build && cmake .. && make"
+  - docker run -t -v $(pwd):/data hamroctopus/latex-cmake /bin/bash -c "cd /data/doc/presentation/build && cmake .. && make"
 
 after_success:
   - mkdir $HOME/deliverables && cp -fv doc/report/build/report.pdf doc/presentation/build/presentation.pdf $HOME/deliverables
