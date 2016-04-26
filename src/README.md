@@ -89,4 +89,4 @@ Build clean
   [Install docker]: https://docs.docker.com/engine/installation/
   [spin]: http://spinroot.com/spin/Man/README.html
   [Hothorn, Held and Friede]: https://www.r-project.org/nosvn/conferences/useR-2011/TalkSlides/Contributed/16Aug_1115_FocusI_4-ReportingWorkflows_3-Leha.pdf
-  [robots]: https://travis-ci.org/stormosson/camelot
+  [robots]: https://travis-ci.org/stormosson/camelot/branches
