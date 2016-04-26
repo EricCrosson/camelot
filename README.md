@@ -5,9 +5,6 @@ Camelot
 [![Issue Count](https://codeclimate.com/github/stormosson/camelot/badges/issue_count.svg)](https://codeclimate.com/github/stormosson/camelot)
 
 
-Overview
---------
-
 This repository fulfills the final project from the [University of Texas]
 [Cockrell School of Engineering] [EE 360P] curriculum taught by
 [Professor Vijay Garg].
