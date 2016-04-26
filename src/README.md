@@ -10,7 +10,7 @@ possible definition
 
 Consisting of more than methodology and code, _reproducible research_ contains
 methodology, code, parameters, and a build environment. This information permits
-other humans and even [robots] to confirm the published results. To reproduce
+other humans and even [machines] to confirm the published results. To reproduce
 some research of your own follow the [Setup] and then [Build] instructions.
 
 
@@ -88,7 +88,7 @@ Build clean
   [Install docker]: https://docs.docker.com/engine/installation/
   [spin]: http://spinroot.com/spin/Man/README.html
   [Hothorn, Held and Friede]: https://www.r-project.org/nosvn/conferences/useR-2011/TalkSlides/Contributed/16Aug_1115_FocusI_4-ReportingWorkflows_3-Leha.pdf
-  [robots]: https://travis-ci.org/stormosson/camelot/branches
+  [machines]: https://travis-ci.org/stormosson/camelot/branches
   [Setup]: #setup-build-environment
   [Build]: #build-instructions
   [build instructions]: #build-instructions
