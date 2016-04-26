@@ -12,10 +12,9 @@ The assignment calls for a [term paper] and a [presentation].
 > software project have been written by you (or modified by you).
 
 The [term paper] was written in [LaTeX], for its [obvious advantages]. The
-[presentation] was also typset with LaTeX, using [beamer]. If you desire to
-build these documents yourself, follow the [Setup] and then [Build]
-instructions. To build the [promela models] for yourself, follow the
-[relevant build instructions].
+[presentation] was also typset with LaTeX, using [beamer]. To build these
+documents yourself, follow the [Setup] and then [Build] instructions. To build
+the [promela models] for yourself, follow the [relevant build instructions].
 
 
 Setup build environment
