@@ -3,17 +3,19 @@ language: c
 branches:
   only:
     - master
+    - ci
+sudo: required
+services:
+  - docker
+
+before_install:
+  - git submodule update --init --recursive
 
 install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq cmake make gcc bison build-essential
-  - sudo wget http://spinroot.com/spin/Src/src645.tar.gz -O /tmp/spin.tar.gz
-  - sudo tar xf /tmp/spin.tar.gz
-  - sudo make -C Src6.4.5
-  - sudo make -C Src6.4.5 install
-  - sudo wget --no-check-certificate https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz -O /tmp/cmake.tar.gz
-  - sudo tar xf /tmp/cmake.tar.gz
-  - cd cmake-3.5.2 && sudo cmake . && sudo make && sudo make install && cd ..
+  - docker pull hamroctopus/spin
+  - docker pull tianon/latex
 
 script:
-  - cd src && mkdir build && cd build && cmake .. && make
+  - mkdir -p src/build doc/report/build doc/presentation/build
+  - docker run -t -v $(pwd):/data hamroctopus/spin /bin/bash -c "cd /data/src/build && cmake && make"
+  - docker run -t -v $(pwd):/data tianon/latex /bin/bash -c "cd /data/doc/report/build && cmake && make"
