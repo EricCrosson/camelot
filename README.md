@@ -1,40 +1,57 @@
 Camelot
 =======
 
-[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot) [![Code Climate](https://codeclimate.com/github/stormosson/camelot/badges/gpa.svg)](https://codeclimate.com/github/stormosson/camelot)
+[![Build Status](https://travis-ci.org/stormosson/camelot.svg?branch=develop)](https://travis-ci.org/stormosson/camelot)
+[![Issue Count](https://codeclimate.com/github/stormosson/camelot/badges/issue_count.svg)](https://codeclimate.com/github/stormosson/camelot)
 
 
 Overview
 --------
 
+This repository fulfills the final project from the [University of Texas]
+[Cockrell School of Engineering] [EE 360P] curriculum taught by
+[Professor Vijay Garg].
+
+
 Objective:
 
-> Promela Models for Distributed Programs Specify and verify the correctness of
-> at least four different distributed algorithms using Promela language and the
-> SPIN model checker.
+> Specify and verify the correctness of at least four different distributed
+> algorithms using Promela language and the SPIN model checker.
 
 This assignment is from the [Spring 2012 Final Project list].
 
-Verified Algorithms
--------------------
 
-- [Token Ring]
-- [Lamport]
-- [Ricart and Agrawala]
-
-Dependencies
+Deliverables
 ------------
 
--   make
--   cmake
--   [spin]
--   your favorite c compiler
+### Verified Algorithms
+
+- [Token Ring]
+- [Lamport's]
+- [Szymanski's]
+- [Dining Philosophers]
+
+### Findings
+
+- [Report]
+- [Presentation]
+
+
+Reproducible Research
+---------------------
 
 See [build instructions].
 
-  [build instructions]: https://github.com/stormosson/camelot/tree/master/src
+  [build instructions]: src
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
   [spin]: http://spinroot.com/spin/Man/README.html
-  [Lamport]: http://users.ece.utexas.edu/~garg/dist1/lecdist/slides/l6-mutex/slide.pdf
-  [Token Ring]: https://en.m.wikipedia.org/wiki/Token_ring
-  [Ricart and Agrawala]: https://en.m.wikipedia.org/wiki/Ricart%E2%80%93Agrawala_algorithm
+  [Lamport's]: http://dl.acm.org/citation.cfm?id=359563
+  [Token Ring]: http://dl.acm.org/citation.cfm?id=802819&CFID=776312108&CFTOKEN=18774545
+  [Szymanski's]: http://dl.acm.org/citation.cfm?id=55425
+  [Dining Philosophers]: http://dl.acm.org/citation.cfm?id=1804
+  [Report]: doc/report/report.pdf
+  [Presentation]: doc/presentation/presentation.pdf
+  [University of Texas]: http://www.utexas.edu/
+  [Cockrell School of Engineering]: http://www.engr.utexas.edu/
+  [Professor Vijay Garg]: http://users.ece.utexas.edu/~garg/
+  [EE 360P]: http://www.ece.utexas.edu/undergraduate/courses/360p

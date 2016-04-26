@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 3.2)
 project (formal-verification-final-project)
 
+SET(ARGS "-DN=4" CACHE STRING "User specified arguments to spin")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
@@ -27,7 +28,7 @@ function(make_promela_binary assertfile srcs)
         COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c
         COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.* ${CMAKE_BINARY_DIR}/
     )
-    add_executable (${assertname} ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c)
+    add_executable (${PROJECT_NAME}_${assertname} ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c)
 endfunction(make_promela_binary)
 
 
@@ -48,3 +49,6 @@ endfunction(make_binaries)
 
 add_subdirectory (lamport)
 add_subdirectory (tokenring)
+add_subdirectory (szymanski)
+add_subdirectory (tolerant_szymanski)
+add_subdirectory (philosophers)
