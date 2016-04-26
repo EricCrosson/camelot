@@ -1,4 +1,6 @@
+#ifndef N
 #define N 5
+#endif
 
 bit forks[N];
 byte count_eating;
