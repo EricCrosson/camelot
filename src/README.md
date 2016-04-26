@@ -89,5 +89,5 @@ Build clean
   [spin]: http://spinroot.com/spin/Man/README.html
   [Hothorn, Held and Friede]: https://www.r-project.org/nosvn/conferences/useR-2011/TalkSlides/Contributed/16Aug_1115_FocusI_4-ReportingWorkflows_3-Leha.pdf
   [robots]: https://travis-ci.org/stormosson/camelot/branches
-  [Setup]: #Setup-build-environment
-  [Build]: #Build-instructions
+  [Setup]: #setup-build-environment
+  [Build]: #build-instructions
