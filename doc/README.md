@@ -14,7 +14,8 @@ The assignment calls for a [term paper] and a [presentation].
 The [term paper] was written in [LaTeX], for its [obvious advantages]. The
 [presentation] was also typset with LaTeX, using [beamer]. If you desire to
 build these documents yourself, follow the [Setup] and then [Build]
-instructions.
+instructions. To build the [promela models] for yourself, follow the
+[relevant build instructions].
 
 
 Setup build environment
@@ -77,3 +78,5 @@ Build clean
   [Setup]: #setup-build-environment
   [Build]: #build-instructions
   [build instructions]: #build-instructions
+  [promela models]: ../src
+  [relevant build instructions]: ../src/README.md
