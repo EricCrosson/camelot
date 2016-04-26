@@ -13,9 +13,9 @@ before_install:
 
 install:
   - docker pull hamroctopus/spin
-  - docker pull tianon/latex
+  # - docker pull tianon/latex
 
 script:
   - mkdir -p src/build doc/report/build doc/presentation/build
-  - docker run -t -v $(pwd):/data hamroctopus/spin /bin/bash -c "cd /data/src/build && cmake && make"
-  - docker run -t -v $(pwd):/data tianon/latex /bin/bash -c "cd /data/doc/report/build && cmake && make"
+  - docker run -t -v $(pwd):/data hamroctopus/spin /bin/bash -c "cd /data/src/build && cmake .. && make"
+  # - docker run -t -v $(pwd):/data tianon/latex /bin/bash -c "cd /data/doc/report/build && cmake .. && make"
