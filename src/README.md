@@ -12,7 +12,7 @@ Consisting of more than methodology and code, _reproducible research_ contains
 methodology, code, parameters, and a build environment. This information permits
 other humans and even [machines] to confirm the published results. To reproduce
 some research of your own follow the [Setup] and then [Build] instructions. To
-build the associated [findings documents] see the [relevant build instructions]
+build the associated [findings documents] see the [relevant build instructions].
 
 
 Setup build environment
