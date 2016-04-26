@@ -12,18 +12,58 @@ The assignment calls for a [term paper] and a [presentation].
 > software project have been written by you (or modified by you).
 
 The [term paper] was written in [LaTeX], for its [obvious advantages]. The
-[presentation] was also typset with LaTeX, using [beamer].
+[presentation] was also typset with LaTeX, using [beamer]. If you desire to
+build these documents yourself, follow the [Setup] and then [Build]
+instructions.
 
 
-Build instructions
+Setup build environment
+=======================
+
+This project uses [docker] to encapsulate a functional build environment. More
+information is available from [dockerhub]. This page also contains information
+on a manual setup.
+
+
+Prebuilt environment
+--------------------
+
+[Install docker]. The following code will pull down the build environment, mount
+your locally cloned version of this repository, and give you a shell in the
+docker container.
+
+    docker pull hamroctopus/latex-cmake
+    docker run -it -v </path/to/local/repo>:/data hamroctopus/latex-cmake
+
+
+Navigate to `/data/doc/` and proceed to the [build instructions].
+
+
+Manual environment
 ------------------
+
+Install the following dependencies
+
+-     make
+-     cmake
+-     texlive
+
+
+Build Instructions
+==================
 
 To build a pdf, execute the following from inside either `presentation` or `report`
 
     mkdir build
     cd build
-    cmake ..
+    CXX=$(which gcc) cmake ..
     make
+
+
+Build clean
+-----------
+
+    rm -rf build
 
 
   [term paper]: report/report.pdf
@@ -31,4 +71,9 @@ To build a pdf, execute the following from inside either `presentation` or `repo
   [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
   [LaTeX]: https://www.latex-project.org/
   [obvious advantages]: http://nitens.org/taraborelli/latex
-  
+  [docker]: https://www.docker.com/
+  [dockerhub]: https://hub.docker.com/r/hamroctopus/latex-cmake/
+  [Install docker]: https://docs.docker.com/engine/installation/
+  [Setup]: #setup-build-environment
+  [Build]: #build-instructions
+  [build instructions]: #build-instructions
