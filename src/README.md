@@ -20,7 +20,7 @@ Setup build environment
 
 This project uses [docker] to encapsulate a functional build environment. More
 information is available from [dockerhub]. This page also contains information
-on a manual setup.
+on a [manual setup].
 
 
 Prebuilt environment
@@ -95,3 +95,4 @@ Build clean
   [build instructions]: #build-instructions
   [findings documents]: ../doc
   [relevant build instructions]: ../doc/README.md
+  [manual setup]: #manual-environment
