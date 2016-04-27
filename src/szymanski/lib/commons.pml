@@ -71,4 +71,3 @@ inline wait_forall(k, s, e, p) {
         od;
     }
 }
-
