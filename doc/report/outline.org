@@ -29,7 +29,7 @@
     (the solution supports quadratic and not linear delay) [Peterson, 19831. The
     algorithm given here is not only simpler than the one presented by Peterson,
     but it also enforces linear wait.
-  - correct solution to lamports requires four conditions
+  - correct solution to lamports requires three conditions
     - mutex
     - no deadlock
     - fairness
