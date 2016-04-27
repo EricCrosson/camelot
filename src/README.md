@@ -58,7 +58,7 @@ To build all promela models, execute the following from inside this directory
 
     mkdir build
     cd build
-    CXX=$(which gcc) cmake ..
+    cmake ..
     make
 
 
@@ -70,7 +70,7 @@ Pass custom flags to spin
 
     mkdir build
     cd build
-    CXX=$(which gcc) cmake -DARGS:STRING="-N 50"
+    cmake -DARGS:STRING="-N 50"
     make
 
 

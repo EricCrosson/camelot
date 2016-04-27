@@ -56,7 +56,7 @@ To build a pdf, execute the following from inside either `presentation` or `repo
 
     mkdir build
     cd build
-    CXX=$(which gcc) cmake ..
+    cmake ..
     make
 
 
