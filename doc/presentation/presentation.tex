@@ -19,6 +19,17 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+\usepackage{listings,multicol}
+\definecolor{ForestGreen}{rgb}{0.13,0.55,0.13}
+\lstset{
+    language         = Promela,
+    basicstyle       = \ttfamily,
+    keywordstyle     = \bfseries\color{blue},
+    stringstyle      = \color{magenta},
+    commentstyle     = \color{ForestGreen},
+    showstringspaces = false,
+}
+
 %Enable cancelto in math
 \usepackage{cancel}
 \renewcommand{\CancelColor}{\color{utorange}}
@@ -133,7 +144,9 @@
 
 \begin{frame}
   \frametitle{Szymanski's Implementation}
-  
+  \begin{multicols*}{3}
+    \lstinputlisting[language=Promela, basicstyle=\tiny]{../figs/szymanski.pml}
+  \end{multicols*}
 \end{frame}
 
 \begin{frame}
