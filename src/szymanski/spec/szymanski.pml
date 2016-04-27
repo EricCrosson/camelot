@@ -1,68 +1,153 @@
-#ifndef  N
-#define  N  3
+/** @author Mateusz Machalica */
+
+                /* LTL metamacros are prepared for 2 <= N <= 4, if you wish to use different value of N, you must modify
+                * them acordingly in lib/ltls.pml. In case you forget to do that you will get compile time error. */
+#undef N
+/* 01 */        #define N 4                           /* liczba procesow */
+#ifdef N_OVERRIDE
+#warning "redefined number of processes in the model"
+#undef N
+#define N N_OVERRIDE
 #endif
 
-bit _Permission[N];
-bit _Executing[N];
-bit _Priority[N];  /*Lower priority goes first*/
 byte in_cs;
+/* 02 */        bool chce[N], we[N], wy[N];
+/* 03 */        #define i _pid
 
-init {
-  atomic {
-    byte i = 0;
+#ifndef EPILOGUE
+#define EPILOGUE 6
+#endif
+#define LTL 999
+#include "../lib/commons.pml"
 
-    do
-    :: i < N -> run P(i); i++;
-    :: else  -> break;
-    od;
-  }
-}
+/* 04 */        active [N] proctype P()
+/* 05 */        {
+                    byte k;
+                    count_init();
+                    goto start;
 
-inline Low(k, i) {
-  d_step {
-  i = 0;
-  do
-  :: i == 0 && _Priority[i] == _Priority[N-1] -> k = 0; break;
-  :: i == 0 && _Priority[i] != _Priority[N-1] -> i++;
-  :: i > 0 && _Priority[i] != _Priority[i-1] -> k = i; break;
-  :: i > 0 && _Priority[i] == _Priority[i-1] -> i++;
-  od;
-  }
-}
+                restart:
+                    /* \forall_k (!we[k] || wy[k]) \iff \neg \exists_k (we[k] && !wy[k]) \iff #(we && !wy) = 0 */
+                    (count(0,1,0) + count(1,1,0) == 0);
 
-proctype P(byte id) {
-  byte i, k;
-  bit temp;
-NonCritical:
-  _Permission[id] = true;
-Wait:
-  _Executing[id] = true;
-  Low(k, i);
-  if
-  :: k != id -> i = k;
-     do
-     :: (i % N != id-1) ->
-        if
-        :: _Executing[i%N] == true -> _Permission[id] = false; goto Wait;
-        :: _Executing[i%N] == false -> i++;
-        fi;
-     :: (i % N == id-1); break;
-     od;
-  :: k == id;
-  fi;
-  if
-  :: _Permission[id] == false -> goto NonCritical;
-  :: atomic { _Permission[id] == true -> i = id + 1; }
-  fi;
-  do
-  :: atomic { (i % N != k-1) && _Permission[i%N] == false -> i++; }
-  :: (i % N != k-1) && _Permission[i%N] == true; goto NonCritical;
-  :: atomic { (i % N == k-1) -> in_cs++; } break;
-  od;
-Critical:
-  atomic { temp = 1 - _Priority[id]; in_cs--; }
-  _Priority[id] = temp;
-  _Permission[id] = false;
-  _Executing[id] = false;
-  goto NonCritical;
-}
+/* 06 */        start:
+                    /* SEKCJA LOKALNA */
+
+                    local_section();
+
+                    /* PROLOG */
+
+                    begin_change
+/* 07 */            chce[i] = true;
+                    end_change
+                started_protocol:
+                    skip;
+
+                    /* \forall_k !(chce[k] && we[k]) \iff \neq \exists_k (chce[k] && we[k]) \iff #(chce && we) = 0 */
+                    (count(1,1,0) + count(1,1,1) == 0);
+
+                    begin_change
+/* 08 */            we[i] = true;
+                    end_change
+
+                anteroom_check:
+                    if
+                      /* \exists_k (chce[k] && !we[k]) \iff #(chce && !we) > 0 */
+                      :: (count(1,0,0) + count(1,0,1) > 0) ->
+/* 09 */                {
+                            begin_change
+/* 10 */                    chce[i] = false;
+                            end_change
+
+                        in_anteroom:
+                            (
+                            /* \exists_k wy[k] \iff #(wy) > 0 */
+                            (count(0,0,1) + count(0,1,1) + count(1,0,1) + count(1,1,1) > 0)
+                            );
+
+                            begin_change
+/* 11 */                    chce[i] = true;
+                            end_change
+/* 12 */                }
+                      :: else
+                    fi;
+
+                    begin_change
+/* 13 */            wy[i] = true;
+                    end_change
+
+                    /* \forall_k (k > i \implies (!we || wy)) */
+                    wait_forall(k, i + 1, N, (!we[k] || wy[k]));
+
+                    /* \forall_k (k < i \implies !we) */
+                    wait_forall(k, 0, i, (!we[k]));
+
+                    /* SEKCJA KRYTYCZNA */
+
+                critical_section:
+                    skip;
+
+                    /* EPILOG */
+
+#if EPILOGUE == 321
+                    begin_change
+/* 14 */            wy[i] = false;
+                    interrupt_change
+/* 15 */            we[i] = false;
+                    interrupt_change
+/* 16 */            chce[i] = false;
+                    end_change
+#elif EPILOGUE == 312
+                    begin_change
+                    wy[i] = false;
+                    interrupt_change
+                    chce[i] = false;
+                    interrupt_change
+                    we[i] = false;
+                    end_change
+#elif EPILOGUE == 231
+                    begin_change
+                    we[i] = false;
+                    interrupt_change
+                    wy[i] = false;
+                    interrupt_change
+                    chce[i] = false;
+                    end_change
+#elif EPILOGUE == 213
+                    begin_change
+                    we[i] = false;
+                    interrupt_change
+                    chce[i] = false;
+                    interrupt_change
+                    wy[i] = false;
+                    end_change
+#elif EPILOGUE == 132
+                    begin_change
+                    chce[i] = false;
+                    interrupt_change
+                    wy[i] = false;
+                    interrupt_change
+                    we[i] = false;
+                    end_change
+#elif EPILOGUE == 123
+                    begin_change
+                    chce[i] = false;
+                    interrupt_change
+                    we[i] = false;
+                    interrupt_change
+                    wy[i] = false;
+                    end_change
+#elif EPILOGUE == 6
+                    begin_change
+                    chce[i] = false;
+                    we[i] = false;
+                    wy[i] = false;
+                    end_change
+#else
+#error "protocol epilogue must be chosen, any permutation of {1, 2, 3} or 6 (for atomic epilogue) is acceptable"
+#endif
+
+/* 17 */            goto start
+/* 18 */        }
+
+#include "../lib/ltls.pml"
