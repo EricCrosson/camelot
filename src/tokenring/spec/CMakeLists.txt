@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.0.2)
 
-project(tokenring)
+project(tokenring C)
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME})
 
 SET (ARGS "-DN=10" CACHE STRING "Compile-time arguments passed to spin")

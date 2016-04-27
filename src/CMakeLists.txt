@@ -1,9 +1,8 @@
 cmake_minimum_required (VERSION 3.2)
-project (formal-verification-final-project)
+project (formal-verification-final-project C)
 
 SET(ARGS "-DN=4" CACHE STRING "User specified arguments to spin")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set (CMAKE_CXX_COMPILER "/usr/bin/gcc")
 
 
 # I WONDER: does this work with multiple srcs? first line would be the worrisome
