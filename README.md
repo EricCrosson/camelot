@@ -5,9 +5,9 @@ Camelot
 [![Issue Count](https://codeclimate.com/github/stormosson/camelot/badges/issue_count.svg)](https://codeclimate.com/github/stormosson/camelot)
 
 
-This repository fulfills the final project from the [University of Texas]
-[Cockrell School of Engineering] [EE 360P] curriculum taught by
-[Professor Vijay Garg].
+This repository fulfills the final project from the
+[Cockrell School of Engineering][2] [EE 360P][3] Spring 2016 curriculum taught
+by [Professor Vijay Garg].
 
 
 Objective:
@@ -48,7 +48,7 @@ See [build instructions].
   [Dining Philosophers]: http://dl.acm.org/citation.cfm?id=1804
   [Report]: https://github.com/stormosson/camelot/tree/deliverables/report.pdf
   [Presentation]: https://github.com/stormosson/camelot/tree/deliverables/presentation.pdf
-  [University of Texas]: http://www.utexas.edu/
-  [Cockrell School of Engineering]: http://www.engr.utexas.edu/
+  [1]: http://www.utexas.edu/
+  [2]: http://www.engr.utexas.edu/
+  [3]: http://www.ece.utexas.edu/undergraduate/courses/360p
   [Professor Vijay Garg]: http://users.ece.utexas.edu/~garg/
-  [EE 360P]: http://www.ece.utexas.edu/undergraduate/courses/360p
