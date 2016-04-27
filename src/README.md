@@ -47,7 +47,6 @@ Install the following dependencies
 -   [spin]
 -   bison
 -   gcc
--   g++
 
 and proceed to the build instructions.
 
@@ -59,7 +58,7 @@ To build all promela models, execute the following from inside this directory
 
     mkdir build
     cd build
-    cmake ..
+    CXX=$(which gcc) cmake ..
     make
 
 
@@ -71,7 +70,7 @@ Pass custom flags to spin
 
     mkdir build
     cd build
-    cmake -DARGS:STRING="-N 50"
+    CXX=$(which gcc) cmake -DARGS:STRING="-N 50"
     make
 
 
