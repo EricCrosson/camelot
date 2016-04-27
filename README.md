@@ -17,6 +17,11 @@ Objective:
 
 This assignment is from the [Spring 2012 Final Project list].
 
+This project contains submodules, to initialize them during download clone with
+the following options
+
+    git clone --recursive https://github.com/stormosson/camelot
+
 
 Deliverables
 ------------
