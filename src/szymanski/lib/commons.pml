@@ -4,14 +4,14 @@ byte states_count[8];
 /* With this macro it is easy to express conditions quantified existentially by
 * comaring sum of counts with zero and conditions quantified universally by
 * comparing sum to N or negating the condition. */
-#define count(chce, we, wy)         states_count[4*chce + 2*we + 1*wy]
-#define count_this                  count(chce[_pid], we[_pid], wy[_pid])
+#define count(intent, door_in, door_out)         states_count[4*intent + 2*door_in + 1*door_out]
+#define count_this                  count(intent[_pid], door_in[_pid], door_out[_pid])
 #define begin_change                skip; d_step { { count_this--; };
 #define interrupt_change            end_change begin_change
-/* We model failures in such a way, that entire local state (local variables &
- * instruction pointer) are lost, therefore to cover all possible scenarios we
- * can nondeterministically fail after each modification of the global state
- * only. */
+/* Door_In model failures in such a way, that entire local state (local
+ * variables & instruction pointer) are lost, therefore to cover all possible
+ * scenarios door_in can nondeterministically fail after each modification of
+ * the global state only. */
 #define end_change                  { count_this++; } } possibly_fail();
 
 inline count_init() {
@@ -24,18 +24,18 @@ inline count_init() {
 }
 
 inline local_section() {
-#ifdef PROCESSES_NEVER_BLOCK
-    #warning "processes cannot block in local section and  will always request critical section reentry"
-    skip;
-#else
+#ifndef PROCESSES_NEVER_BLOCK
     atomic {
         if
-            :: skip
-            :: true ->
-                   end:
-        false
-                   fi;
+          :: skip
+          :: true ->
+            end:
+                false
+        fi;
     }
+#else
+#warning "processes cannot block in local section and  will always request critical section reentry"
+    skip;
 #endif
 }
 
@@ -48,9 +48,9 @@ inline possibly_fail() {
           :: true ->
             {
                 count_this--;
-                chce[i] = false;
-                we[i] = false;
-                wy[i] = false;
+                intent[i] = false;
+                door_in[i] = false;
+                door_out[i] = false;
                 count_this++;
                 goto restart
             }
@@ -71,3 +71,4 @@ inline wait_forall(k, s, e, p) {
         od;
     }
 }
+

@@ -5,30 +5,31 @@ SET(ARGS "-DN=4" CACHE STRING "User specified arguments to spin")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
-# I WONDER: does this work with multiple srcs? first line would be the worrisome
-# part
-function(make_promela_binary_no_tests srcs)
+# Note: these make_promela_binary commands do not accempt multiple srcs
+function(make_promela_binary_no_tests src)
+    get_filename_component(srcname ${src} NAME_WE)
     add_custom_command (
-        OUTPUT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c
-        COMMAND spin -m -a ${ARGS} ${srcs}
-        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c
+        OUTPUT ${CMAKE_BINARY_DIR}/${srcname}.c
+        COMMAND spin -m -a ${ARGS} ${src}
+        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${srcname}.c
         COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.* ${CMAKE_BINARY_DIR}/
     )
-    add_executable (${PROJECT_NAME} ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.c)
+    add_executable (${srcname} ${CMAKE_BINARY_DIR}/${srcname}.c)
 endfunction(make_promela_binary_no_tests)
 
 
-function(make_promela_binary assertfile srcs)
+function(make_promela_binary assertfile src)
     # get name of assert
     get_filename_component(assertname ${assertfile} NAME_WE)
+    get_filename_component(srcname ${src} NAME_WE)
 
     add_custom_command (
-        OUTPUT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c
-        COMMAND spin -m -a ${ARGS} -N ${assertfile} ${srcs}
-        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c
+        OUTPUT ${CMAKE_BINARY_DIR}/${srcname}_${assertname}.c
+        COMMAND spin -m -a ${ARGS} -N ${assertfile} ${src}
+        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.c ${CMAKE_BINARY_DIR}/${srcname}_${assertname}.c
         COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/pan.* ${CMAKE_BINARY_DIR}/
     )
-    add_executable (${PROJECT_NAME}_${assertname} ${CMAKE_BINARY_DIR}/${PROJECT_NAME}_${assertname}.c)
+    add_executable (${srcname}_${assertname} ${CMAKE_BINARY_DIR}/${srcname}_${assertname}.c)
 endfunction(make_promela_binary)
 
 
@@ -50,5 +51,4 @@ endfunction(make_binaries)
 add_subdirectory (lamport)
 add_subdirectory (tokenring)
 add_subdirectory (szymanski)
-add_subdirectory (tolerant_szymanski)
 add_subdirectory (philosophers)

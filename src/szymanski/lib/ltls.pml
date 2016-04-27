@@ -29,7 +29,7 @@
 
 #define SkipsAnteroom(i)        (<> (Started(i) U (!InAnteroom(i) U InCS(i))))
 
-#define JLetsIExit(i, j)        (we[i] && !chce[i] -> i != j && <> wy[j])
+#define JLetsIExit(i, j)        (door_in[i] && !intent[i] -> i != j && <> door_out[j])
 #define ExitsAnteroom(i)        EXISTS_PROC_2(i, JLetsIExit)
 
 #define IsLively(i)             (Started(i) -> <> InCS(i))
@@ -45,7 +45,7 @@
 #define NoUnlimOvertake(i,j)    (i != j && Started(i) -> !( \
                                 ([] (!InCS(i))) && ([] <> (!InCS(j))) && ([] <> InCS(j))))
 
-#define JLetsIExit2(i, j)       (InAnteroom(i) -> i != j && <> wy[j])
+#define JLetsIExit2(i, j)       (InAnteroom(i) -> i != j && <> door_out[j])
 #define ExitsAnteroom2(i)       EXISTS_PROC_2(i, JLetsIExit2)
 
 #if LTL == 1
@@ -57,12 +57,12 @@
 #elif LTL == 4
     ltl Liveness { [] FOR_ALL_PROCS(IsLively) }
 #elif LTL == 51
-    /* We would like to write a quantified formulae, but we can't since there
-    * apparently exists a limit for the length of LTL formulae. Therefore we
-    * check this property for one pair of processes only. Since our algorithm
-    * works in the same way for all pairs of processes i < j and in the same way
-    * for all pairs i > j, we can conclude that ,,linear wait'' property holds
-    * iff below LTL formulae holds. */
+    /* Door_In would like to write a quantified formulae, but door_in can't
+    * since there apparently exists a limit for the length of LTL
+    * formulae. Therefore door_in check this property for one pair of processes
+    * only. Since our algorithm works in the same way for all pairs of processes
+    * i < j and in the same way for all pairs i > j, door_in can conclude that
+    * ,,linear wait'' property holds iff below LTL formulae holds. */
     ltl LinearWait1 { [] (LimitedOvertake1(0,1) && LimitedOvertake1(1,0)) }
 #elif LTL == 5
     ltl LinearWait2 { [] (LimitedOvertake2(0,1) && LimitedOvertake2(1,0)) }
@@ -97,3 +97,4 @@
 #else
 #error "running verifier without LTL formula makes very little sense"
 #endif
+

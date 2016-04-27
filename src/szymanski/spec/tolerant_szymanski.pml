@@ -12,7 +12,7 @@
 /* 01 */  #define N 4                           /* liczba procesow */
 #endif
 #ifndef EPILOGUE
-#define EPILOGUE 321
+#define EPILOGUE 312
 #endif
 #ifndef LTL
 #define LTL 999
@@ -37,7 +37,6 @@ byte in_cs;
 /* 06 */        start:
 
                     /* SEKCJA LOKALNA */
-
                     local_section();
 
                     /* PROLOG */
@@ -67,11 +66,22 @@ byte in_cs;
                             (
                             /* \exists_k door_out[k] \iff #(door_out) > 0 */
                             (count(0,0,1) + count(0,1,1) + count(1,0,1) + count(1,1,1) > 0)
+                            ||
+                            /* \forall_k (!intent[k] || door_in[k]) \iff \neg \exists_k (intent[k] && !door_in[k])
+                            * \iff #(intent && !door_in) = 0 */
+                            (count(1,0,0) + count(1,0,1) == 0)
                             );
 
                             begin_change
 /* 11 */                    intent[i] = true;
                             end_change
+
+                            if
+                              /* \neg \exists_k door_out[k] \iff #(door_out) == 0 */
+                              :: (count(0,0,1) + count(0,1,1) + count(1,0,1) + count(1,1,1) == 0)
+                                    -> goto anteroom_check
+                              :: else
+                            fi;
 /* 12 */                }
                       :: else
                     fi;
