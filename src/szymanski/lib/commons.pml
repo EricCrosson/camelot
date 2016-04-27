@@ -7,6 +7,7 @@ byte states_count[8];
 #define count(intent, door_in, door_out)     states_count[4*intent + 2*door_in + 1*door_out]
 #define count_this                           count(intent[_pid], door_in[_pid], door_out[_pid])
 #define begin_state_change                   skip; d_step { { count_this--; };
+/* Allows an interruption when invoked */
 #define interrupt_change                     end_state_change begin_state_change
 /* Door_In model failures in such a way, that entire local state (local
  * variables & instruction pointer) are lost, therefore to cover all possible
