@@ -47,6 +47,7 @@ Install the following dependencies
 -     make
 -     cmake
 -     texlive
+-     poppler-utils
 
 
 Build Instructions
