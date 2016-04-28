@@ -2,6 +2,6 @@
 
 never {
   do
-  :: assert(invalidchannelstate);
+  :: assert(!invalidchannelstate);
   od;
 }
