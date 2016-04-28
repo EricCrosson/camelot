@@ -57,36 +57,77 @@
 %First frame
 \section{Introducing Promela}
 \begin{frame}
-    \frametitle{Cockrell School Beamer Presentation Template}
-
+    \frametitle{What are Spin and Promela?}
+    Spin is a multi-threaded software verification tool that supports the high-level language Promela to specify models of systems.
     \begin{itemize}
-        %Support for external hyperlinks as shown
-        \item Conforms to \href{http://www.engr.utexas.edu/communications/visualguidelines}{Cockrell School Visual Style Guide}
-        \begin{itemize}
-            \item Exact color palette
-            \item Opensans fonts
-        \end{itemize}
-        \item Easily change department names in title bar
-        %Citations can use \footcite or \cite commands
-        % \item Convenient citation system \footcite{knuth1989} \cite{lamport1986}
-        \begin{itemize}
-            \item Full citation with active hyperlinks to DOI upon first citation.
-            \item See next slide for repeated citation behavior
-        \end{itemize}
+      \item Promela allows the user to create parallel programs that define processes, message channels, and variables.
+      \item From the promela program, Spin can then verify various system correctness properties as well as user-defined properties
     \end{itemize}
 \end{frame}
 
 \section{Dining Philosophers}
 \begin{frame}[c]
-    \frametitle{Dining Philosophers}
-    % \TeX\ \cite{knuth1989} and \LaTeX\ \cite{lamport1986} are great for equations
-    \begin{block}{An equation block}
-        \[ \vec{F} = m \vec{a} \]
-    \end{block}
+  \frametitle{Dining Philosophers}
+  \begin{multicols}{2}
+    \textbf{Most Philosophers}
     \begin{itemize}
-        \item Second instance of citations use short citation hyperlinked to original.
+      \item Want to eat:
+      \begin{itemize}
+        \item Get left fork (or wait)
+        \item Get right fork (or wait)
+      \end{itemize}
+      \item After eating:
+      \begin{itemize}
+        \item Release both forks
+        \item Contemplate life until hungry
+      \end{itemize}
     \end{itemize}
+    \columnbreak
+    \textbf{One "Special" Philosopher}
+    \begin{itemize}
+      \item Want to eat:
+      \begin{itemize}
+        \item Get left fork (or wait)
+        \item Get right fork (if fail, release \textit{both} forks)
+      \end{itemize}
+      \item After eating:
+      \begin{itemize}
+        \item Release both forks
+        \item Contemplate life until hungry
+      \end{itemize}
+    \end{itemize}
+  \end{multicols}
 \end{frame}
+
+\begin{frame}[c]
+  \frametitle{Dining Philosopher Analysis}
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item \textbf{Mutually Exclusive}
+      \begin{itemize}
+        \item A philospher must acquire both shared forks before eating
+      \end{itemize}
+      \item \textbf{Deadlock}
+      \begin{itemize}
+        \item The one special philosopher will always surrender both forks, allowing someone else to start eating.
+      \end{itemize}
+      \item \textbf{Starvation}
+      \begin{itemize}
+        \item The special philosopher always surrenders forks in case of conflict. May never get a change to eat.
+      \end{itemize}
+    \end{itemize}
+    \columnbreak
+    \begin{figure}
+      \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[scale=.20]{DiningPhilosophers}
+        \captionof{figure}{Hungry, hungry philosophers}
+      \end{minipage}
+    \end{figure}
+  \end{multicols}
+\end{frame}
+
+
 
 \section{Token Ring}
 \begin{frame}[c]
