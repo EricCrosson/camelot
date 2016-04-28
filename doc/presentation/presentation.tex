@@ -5,7 +5,7 @@
 %\usetheme[dept=Aerospace\ Engineering\ and\ Engineering\ Mechanics]{cockrell}                 
 %\usetheme[dept=Biomedical\ Engineering]{cockrell}                 
 %\usetheme[dept=Chemical\ Engineering]{cockrell}                 
-%\usetheme[dept=Civil,\ Architectural\ and\ Environmental\ Engineering]{cockrell}                 
+%\usetheme[dept=Civil,\ Architectural\ and\ Environmental\ Engineering]{cockrell}
 \usetheme[dept=Electrical\ and\ Computer\ Engineering]{Cockrell}                 
 %\usetheme[dept=Mechanical\ Engineering]{cockrell}                 
 %\usetheme[dept=Materials\ Science\ and\ Engineering]{cockrell}                 
@@ -55,13 +55,13 @@
 %Section commands will define what's shown in TOC
 
 %First frame
-\section{Introducing Promela}
+\section{Promela Overview}
 \begin{frame}
-    \frametitle{What are Spin and Promela?}
-    Spin is a multi-threaded software verification tool that supports the high-level language Promela to specify models of systems.
+    \frametitle{Promela Overview}
     \begin{itemize}
-      \item Promela allows the user to create parallel programs that define processes, message channels, and variables.
-      \item From the promela program, Spin can then verify various system correctness properties as well as user-defined properties
+      \item Promela is \textbf{Pr}ocess \textbf{Me}ta \textbf{La}nguage
+      \item Spin compiles Promela into C
+      \item C executables assert system invariants at each simulated state
     \end{itemize}
 \end{frame}
 
@@ -162,18 +162,38 @@
 \end{frame}
 
 
-
-\section{Lamport's}
+\section{Token Ring}
 \begin{frame}[c]
-    \frametitle{Lamport's}
+    \frametitle{Token Ring Algorithm}
     % \TeX\ \cite{knuth1989} and \LaTeX\ \cite{lamport1986} are great for equations
-    \begin{block}{An equation block}
-        \[ \vec{F} = m \vec{a} \]
-    \end{block}
     \begin{itemize}
-        \item Second instance of citations use short citation hyperlinked to original.
+		\item Simple and easily scalable
+		 \begin{itemize}
+          \item Pass token around ring of processes
+          \item Only processes with token can enter CS
+		  \item No Starvation
+        \end{itemize}
     \end{itemize}
+	
+	
+ \begin{figure}
+	 \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[scale=.30]{tokenring}
+      \captionof{figure}{Token Ring Algorithm}
+      \label{fig:Token Ring}
+    \end{minipage}
+\end{figure}
+	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Token Ring Implementation}
+	  \begin{multicols*}{3}
+    \lstinputlisting[language=Promela, basicstyle=\tiny]{../figs/tokenring.pml}
+  \end{multicols*}
+\end{frame}
+
 
 \section{Szymanski's}
 \begin{frame}[c]
@@ -211,18 +231,12 @@
   \end{multicols*}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Szymanski's Analysis}
-  
-\end{frame}
 
 \section{Questions}
 \begin{frame}[c]
     \frametitle{Questions}  % verbally, say ``What are your questions?'' 
     % \TeX\ \cite{knuth1989} and \LaTeX\ \cite{lamport1986} are great for equations
-    \begin{itemize}
-        \item English mothafucka, do you speak it?
-    \end{itemize}
+    Thank you for your time.
 \end{frame}
 
 

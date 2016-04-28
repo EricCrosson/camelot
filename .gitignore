@@ -1,2 +1,6 @@
 build/
 /doc/presentation/auto/presentation.el
+/doc/report/auto/report.el
+/doc/report/.CMakeLists.txt.swp
+/doc/report/auto/bibliography.el
+/doc/report/auto/research.el

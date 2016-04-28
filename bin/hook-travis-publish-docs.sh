@@ -20,5 +20,5 @@ cd $HOME/camelot
 git rm -rf *
 cp -Rf $HOME/deliverables/* ./
 git add -f .
-git commit -m "Latest javadoc on successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to deliverables"
+git commit -m "Latest pdfs from successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to deliverables"
 git push -fq origin deliverables > /dev/null
