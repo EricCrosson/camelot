@@ -11,7 +11,7 @@ bit _Permission[N];
 bit _Executing[N];
 
 byte in_cs;
-byte token;  /* Defines who has the token by index*/
+byte token;  
 
 init {
   atomic {
@@ -37,7 +37,7 @@ Wait:
   :: id == token
   fi; 
   if
-  :: _Permission[id] == false -> goto NonCritical;
+  :: _Permission[id] == false -> goto NonCritical; 
   :: atomic { _Permission[id] == true -> in_cs++; }
   fi; 
 Critical:

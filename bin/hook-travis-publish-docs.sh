@@ -13,7 +13,7 @@ fi
 cd $HOME
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "travis-ci"
-git clone --quiet --branch=deliverables https://${GH_TOKEN}@github.com/stormosson/camelot $HOME/camelot
+git clone --depth 1 --quiet --branch=deliverables https://${GH_TOKEN}@github.com/stormosson/camelot $HOME/camelot
 
 # Commit and push changes
 cd $HOME/camelot

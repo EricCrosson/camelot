@@ -11,7 +11,8 @@ possible definition
 Consisting of more than methodology and code, _reproducible research_ contains
 methodology, code, parameters, and a build environment. This information permits
 other humans and even [machines] to confirm the published results. To reproduce
-some research of your own follow the [Setup] and then [Build] instructions.
+some research of your own follow the [Setup] and then [Build] instructions. To
+build the associated [findings documents] see the [relevant build instructions].
 
 
 Setup build environment
@@ -19,7 +20,7 @@ Setup build environment
 
 This project uses [docker] to encapsulate a functional build environment. More
 information is available from [dockerhub]. This page also contains information
-on a manual setup.
+on a [manual setup].
 
 
 Prebuilt environment
@@ -46,7 +47,6 @@ Install the following dependencies
 -   [spin]
 -   bison
 -   gcc
--   g++
 
 and proceed to the build instructions.
 
@@ -92,3 +92,6 @@ Build clean
   [Setup]: #setup-build-environment
   [Build]: #build-instructions
   [build instructions]: #build-instructions
+  [findings documents]: ../doc
+  [relevant build instructions]: ../doc/README.md
+  [manual setup]: #manual-environment

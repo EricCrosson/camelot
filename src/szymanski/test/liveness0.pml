@@ -1,5 +1,5 @@
-#define wait   (P[1]@Wait)
-#define cs     (P[1]@Critical)
+#define wait   (P[1]@anteroom_check)
+#define cs     (P[1]@critical_section)
 
 never {    /* ! ([] (wait -> <> (cs))) */
 T0_init:

@@ -12,9 +12,9 @@ The assignment calls for a [term paper] and a [presentation].
 > software project have been written by you (or modified by you).
 
 The [term paper] was written in [LaTeX], for its [obvious advantages]. The
-[presentation] was also typset with LaTeX, using [beamer]. If you desire to
-build these documents yourself, follow the [Setup] and then [Build]
-instructions.
+[presentation] was also typset with LaTeX, using [beamer]. To build these
+documents yourself, follow the [Setup] and then [Build] instructions. To build
+the [promela models] for yourself, follow the [relevant build instructions].
 
 
 Setup build environment
@@ -47,6 +47,7 @@ Install the following dependencies
 -     make
 -     cmake
 -     texlive
+-     poppler-utils
 
 
 Build Instructions
@@ -56,7 +57,7 @@ To build a pdf, execute the following from inside either `presentation` or `repo
 
     mkdir build
     cd build
-    CXX=$(which gcc) cmake ..
+    cmake ..
     make
 
 
@@ -66,8 +67,8 @@ Build clean
     rm -rf build
 
 
-  [term paper]: report/report.pdf
-  [presentation]: presentation/presentation.pdf
+  [term paper]: https://github.com/stormosson/camelot/tree/deliverables/report.pdf
+  [presentation]: https://github.com/stormosson/camelot/tree/deliverables/presentation.pdf
   [beamer]: https://bitbucket.org/rivanvx/beamer/wiki/Home
   [LaTeX]: https://www.latex-project.org/
   [obvious advantages]: http://nitens.org/taraborelli/latex
@@ -77,3 +78,5 @@ Build clean
   [Setup]: #setup-build-environment
   [Build]: #build-instructions
   [build instructions]: #build-instructions
+  [promela models]: ../src
+  [relevant build instructions]: ../src/README.md

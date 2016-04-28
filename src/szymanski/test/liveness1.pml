@@ -1,4 +1,4 @@
-#define cs   (P[1]@Critical)
+#define cs   (P[1]@critical_section)
 
 never {    /* ! ([] ((! cs) -> <> cs)) */
 T0_init:

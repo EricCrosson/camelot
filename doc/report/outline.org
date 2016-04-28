@@ -5,39 +5,74 @@
    Specify and verify the correctness of four different distributed algorithms
    using Promela language and the SPIN model checker.
 ** Contributions
-*** build system (dir structure, cmake files), Ricart, Lamport         :eric:
-*** Lamport, assistance with cmake files                             :stormy:
-*** Token ring                                            :daniel:incomplete:
-*** Central server                                          :nhan:incomplete:
+*** infrastructure & architecture, Szymanski                           :eric:
+- github repo
+- slack channel
+  - updated by github events
+- dir structure
+  - had to evolve to meet needs of the team over time
+- cmake build system
+  - for promela
+    - evolved with dir structure and increasing complexity of specifications
+  - for latex and beamer
+- docker build environments
+- travis continuous integration
+  - uses docker environments
+- auto updates of deliverables to master branch
+  - triggered by successful travis builds
+**** About szymanski
+**** Cited from acm
+  - An important characteristic of any Lamport’s con- current programming
+    problem solution is the maximum number of distinct values of shared memory
+    used by each process. Peterson presented the solution that uses only four
+    distinct values but which does not satisfy the strong fair- ness condition
+    (the solution supports quadratic and not linear delay) [Peterson, 19831. The
+    algorithm given here is not only simpler than the one presented by Peterson,
+    but it also enforces linear wait.
+  - correct solution to lamports requires three conditions
+    - mutex
+    - no deadlock
+    - fairness
+    - robustness :: immune to process failures / read-write errors
+      - implications
+        - no global variables, shared variables that have been mutated by a
+          failing process can cause problems for the alive processes
+*** Lamport                                                          :stormy:
+- bug finding and bug grinding (aka guinea pig/exterminator)
+*** Token ring                                                       :daniel:
+*** Dining Philosophers                                                :nhan:
 * Project Description
 ** Talk about Promela
 ** Talk about SPIN
 ** Algorithms chosen:
-   - Central Server
+   - Dining Philosophers
    - Token Ring
    - Lamport
-   - Ricart
-** Talk about each algorithm in detail
+   - Szymanski
+*** What is the best order?
+    Szymanski immediately after Lamport, and otherwise order of complexity?
 * Design Alternatives
-** Maybe discuss why we chose what we did
+** Maybe discuss why we chose the algorithms we did
+- can't discuss why spin was chosen
 ** Discuss other types of verification software and pros/cons
    - theorem based provers
    - other model checkers
      - FormalCheck
 * Performance results
 ** Lot of graphs (2-4) per algorithm
-   - use spin for nodal graphs
+   - use spin/dot to generate nodal graphs
 * Conclusions
 ** Summarize why each algorithm has been proven correct
 ** Review our experience with promela
 * References
+- See acm references in top level README.md
 ** Inspiration for choosing the four that we did
-   https://www.cs.rutgers.edu/~pxk/417/notes/10-mutex.html
-** Central Server                                                :incomplete:
-   NO SOURCE BECAUSE WE HAVE NOT HEARD FROM THIS GROUP MEMBER
+   - https://www.cs.rutgers.edu/~pxk/417/notes/10-mutex.html
+** Dining Philosophers
+   - https://github.com/oflynned/DiningPhilosophersPromela
 ** Token Ring
-   http://spinroot.com/spin/Workshops/ws96/Sh.pdf (NOT SUFFICIENT)
+   - http://spinroot.com/spin/Workshops/ws96/Sh.pdf (NOT SUFFICIENT)
 ** Lamport
-   http://www.ueda.info.waseda.ac.jp/~kobayashi/Promela/benchmark/mutex_L_N3.html
-** Ricart
-   Same as Lamport.
+   - http://www.ueda.info.waseda.ac.jp/~kobayashi/Promela/benchmark/mutex_L_N3.html
+** Szymanski
+   - https://github.com/stupaq/promela-szymanski
