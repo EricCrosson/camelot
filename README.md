@@ -30,6 +30,7 @@ Deliverables
 
 - [Token Ring]
 - [Lamport's]
+- [Chandy and Lamport]
 - [Szymanski's]
 - [Dining Philosophers]
 
@@ -48,6 +49,7 @@ See [build instructions].
   [Spring 2012 Final Project list]: http://users.ece.utexas.edu/~garg/sp16-proj.html
   [spin]: http://spinroot.com/spin/Man/README.html
   [Lamport's]: http://dl.acm.org/citation.cfm?id=359563
+  [Chandy and Lamport]: http://dl.acm.org/citation.cfm?id=214456&CFID=607635731&CFTOKEN=52341591
   [Token Ring]: http://dl.acm.org/citation.cfm?id=802819&CFID=776312108&CFTOKEN=18774545
   [Szymanski's]: http://dl.acm.org/citation.cfm?id=55425
   [Dining Philosophers]: http://dl.acm.org/citation.cfm?id=1804
