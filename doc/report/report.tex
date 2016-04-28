@@ -65,9 +65,9 @@
 \begin{document}
 \begin{flushleft}
 %%%%First page name, class, etc
-Eric Crosson \\
-Professor \\
-Class \\
+Eric Crosson, William Mauldin, and Daniel Officewala \\
+Professor Vijay Garg\\
+EE 360P \\
 \today \\
 
 %%%%Title
@@ -93,7 +93,28 @@ In every group, there is a philosopher kinder than the rest. This philosopher be
 A common problem with that pops up in any discussion of Dining Philosopher problem/algorithm is the possibility of deadlock, when all the philosophers pick up a fork and forever waits on someone to finish with their other fork (but everyone is waiting so...). The special philosopher circumvents the issue by giving up both fork if he/she cannot get both forks, which allows another philosopher to finish eating and surrender its fork for another philosopher to start eating. Spins demonstrates that this technique does in fact solve deadlock.
 Unfortunately, this algorithm does not prevent starvation. The philosopher that share the second fork with this special philosopher could in theory manage to get the fork before the special philosopher, and thus forever make that special philosopher surrender his/her forks.
 
+TODO
+\section{Introduction}
+Here we should mention something about how due to the semantics of Promela, channels are FIFO
+\section{Project Description}
+\subsection{Chandy and Lamport's Global Snapshot Algorithm}
+
+A global state is a set of local states that occur simultaneously.
+
+The Chandy-Lamport algorithm defines a method to take a global snapshot of a distributed system, which has proven to be a challenge due to the absence of shared memory and a shared clock [\textbf{TODO}: http://www.cfdvs.iitb.ac.in/projects/CourseProjs/Y2K2/naren.ps]. In this algorithm, the global snapshot is determined by collecting all process states (messages sent and received by a given process) and channel states (messages in transit). Processes record their own states and use markers (special types of messages) to deduce the channel states. All channels are assumed to be unidirectional and FIFO.
+
+For any given process, for each of its outbound channels, the process sends a marker after recording its state and before sending any subsequent messages. When a marker is received by another process, if such a process has not recorded its own state, it does so with its current status, and designates the channel as empty (since this must have been the case for the message have been received prior to the local snapshot). Otherwise, the receiving process records its channel state as the sequence of messages it received after recording its state and prior to the reception of the marker. This recorded sequence of messages reflects the channel state.
+
+The purpose of model-checking the Chandy-Lamport algorithm is to verify that each state recorded is consistent, i.e. $$\forall i,j:G[i]||G[j],$$ where $G$ is a set of local states with exactly one local state from each process, $G[i]$ is the local state from process $P_i$, and $G[j]$ is the local state for process $P_j$ [\textbf{TODO}: citation from Garg book].
+
+\section{Performance Results}
+\subsection{Chandy and Lamport's Global Snapshot Algorithm}
+To verify Chandy and Lamport's Global Snapshot Algorithm, we used the Promela model created originally by Mordecai Ben-Ari in Principles of the Spin Model Checker [INSERT REFERENCE]. Since a global state is considered consistent if any two local states of two separate processes are effectively concurrent during that global state, the model simply consists of one \texttt{Sender} and one \texttt{Receiver} proctype. All that is needed to verify a consistent state is to show that the local states of the \texttt{Sender} and the \texttt{Receiver} fit the definition of consistent, i.e. that all messages sent prior to the marker are received, and that any messages sent after the marker are recorded as a part of the channel's state. These is checked by the two assert statements \texttt{assert (lastSent == messageAtMarker)} and \texttt{assert (messageAtRecord <= messageAtMarker)}. Although Ben-Ari suggested that having a channel size of 4 and a total message number of 6 would be sufficient in verifying the model, our build system allowed for us to input custom parameters if desired. The model as seen after being evaluated in iSpin is shown below.
+[Spin Book, pages 198-200]
+\section{Conclusions}
 
 \end{flushleft}
 \end{document}
 \}
+
+
