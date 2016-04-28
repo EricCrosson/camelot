@@ -3,7 +3,7 @@
 never {
   T0_init:
     if 
-      :: invalidchannelstate -> goto accept
+      :: recorded && invalidchannelstate -> goto accept
       :: else -> goto T0_init
     fi;
   accept:
