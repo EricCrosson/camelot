@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.7)
-project (report)
-include (../UseLATEX.cmake C)
+project (report C)
+include (../UseLATEX.cmake)
 
 set (doc-staging-area "./doc-staging")
 
