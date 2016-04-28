@@ -42,7 +42,7 @@
 \pagestyle{fancy}
 \lhead{}
 \chead{}
-\rhead{TODO \thepage}
+\rhead{\thepage}
 \lfoot{}
 \cfoot{}
 \rfoot{}
@@ -72,37 +72,104 @@ EE 360P \\
 
 %%%%Title
 \begin{center}
-\emph{\textbf{Abstract}: This report evaluates the use of Spin to verify Promela models of distributed systems. It was written as the final project for Professor Vijay Garg's Concurrent and Distributed Computing course at the University of Texas at Austin.}
+  \emph{\textbf{Abstract}: This report evaluates the use of Spin to verify
+    Promela models of distributed systems. It was written as the final project
+    for Professor Vijay Garg's Concurrent and Distributed Computing course at
+    the University of Texas at Austin.}
 \end{center}
 
 %%%%Changes paragraph indentation to 0.5in
 \setlength{\parindent}{0.5in}
 %%%%Begin body of paper here
 \section{Introduction}
-Spin is a multi-threaded software verification tool that supports the high-level language Promela to specify models of systems [1]. Given a model, Spin either performs random simulations of the system's execution or generates a C program that verifies the system's correctness properties, including deadlocks, unspecified receptions, and unexecutable blocks, as well as system invariants and other properties defined by the user. Promela allows the user to define processes, message channels, and variables.
+Spin is a multi-threaded software verification tool that supports the high-level
+language Promela to specify models of systems [1]. Given a model, Spin either
+performs random simulations of the system's execution or generates a C program
+that verifies the system's correctness properties, including deadlocks,
+unspecified receptions, and unexecutable blocks, as well as system invariants
+and other properties defined by the user. Promela allows the user to define
+processes, message channels, and variables.
 
 \section{Project Description}
-The intent of this project is to verify four models of distributed algorithms written in Promela. We chose to model the Dining Philosophers Algorithm [2], the Token Ring Algorithm [3], Szymanski's Mutual Exclusion Algorithm [4], and Chandy and Lamport's Global Snapshot Algorithm [5]. We based our implementation heavily upon existing implementations of these algorithms, modified to suit our specific uses.
+The intent of this project is to verify four models of distributed algorithms
+written in Promela. We chose to model the Dining Philosophers Algorithm [2], the
+Token Ring Algorithm [3], Szymanski's Mutual Exclusion Algorithm [4], and Chandy
+and Lamport's Global Snapshot Algorithm [5]. We based our implementation heavily
+upon existing implementations of these algorithms, modified to suit our specific
+uses.
 
-Each of the four team members was responsible for researching one algorithm, finding a suitable model, and re-implementing it for use within our directory structure and build system. Eric created the majority of the build system and set up Docker [6] to allow for our research to be reproducible, all of which is available on Github [7]. William assisted with this process by helping to write some of the CMake files necessary to build the project. Eric focused his research on Szymanski's Algorithm, Daniel on the Token Ring Algorithm, William on Chandy and Lamport's Algorithm, and Nhan on the Dining Philosophers Algorithm.
+Each of the four team members was responsible for researching one algorithm,
+finding a suitable model, and re-implementing it for use within our directory
+structure and build system. Eric created the majority of the build system and
+set up Docker [6] to allow for our research to be reproducible, all of which is
+available on Github [7]. William assisted with this process by helping to write
+some of the CMake files necessary to build the project. Eric focused his
+research on Szymanski's Algorithm, Daniel on the Token Ring Algorithm, William
+on Chandy and Lamport's Algorithm, and Nhan on the Dining Philosophers
+Algorithm.
 
 \section{Performance Results}
-We were able to successfully build all of the algorithms and run them in Spin, but only three out of the four passed the verification tests that we used. We modified all of the existing Promela models such that any defined constants are now able to be passed as parameters and that any assertions are extracted to separate test files.
+We were able to successfully build all of the algorithms and run them in Spin,
+but only three out of the four passed the verification tests that we used. We
+modified all of the existing Promela models such that any defined constants are
+now able to be passed as parameters and that any assertions are extracted to
+separate test files.
 
 \subsection{Dining Philosophers Algorithm}
-The Dining Philosophers Algorithm is a widely used algorithm for guaranteeing mutual exclusion between multiple processes sharing resources. We used a model created by [INSERT MODEL MAKER HERE][8] for verification. We used one test file for this model to ensure deadlock resolution. (EXPLAIN MORE HERE). When run in Spin, we had no assertion failures, so deadlock was verified as impossible. However, we determined that the algorithm was not free from starvation, since it is theoretically possible for the special process (the process that surrenders a held resource when a second resource is unavailable) to constantly surrender its held resource if another, faster process constantly gets access to the second resource prior to the special process. (SHOW RESULTS BELOW)
+The Dining Philosophers Algorithm is a widely used algorithm for guaranteeing
+mutual exclusion between multiple processes sharing resources. We used a model
+created by [INSERT MODEL MAKER HERE][8] for verification. We used one test file
+for this model to ensure deadlock resolution. (EXPLAIN MORE HERE). When run in
+Spin, we had no assertion failures, so deadlock was verified as
+impossible. However, we determined that the algorithm was not free from
+starvation, since it is theoretically possible for the special process (the
+process that surrenders a held resource when a second resource is unavailable)
+to constantly surrender its held resource if another, faster process constantly
+gets access to the second resource prior to the special process. (SHOW RESULTS
+BELOW)
 
 \subsection{Token Ring Algorithm}
-In the Token Ring Algorithm, a ring of processes is constructed, and each process is assigned a specific position in the ring. A token for critical section (CS) access is passed around the ring, and a process can either use it to access the CS or pass it along. We used a model created by [INSERT MODEL MAKER HERE][9] in order to model the algorithm, and a set of mutual exclusion test cases created by Fumiyoshi Kobayashi [10]. As expected, when we ran the tests against the model in Spin, safet and liveness were confirmed, since a process is only allowed to enter the CS if it holds the sole token, and the token is continually passed either immediately or after exiting the CS. However, these tests do not account for faults (lost token). In order to implement fault-tolerance, the algorithm could be modified by having processes send an “acknowledgement” upon receiving a token from a previous process.
+In the Token Ring Algorithm, a ring of processes is constructed, and each
+process is assigned a specific position in the ring. A token for critical
+section (CS) access is passed around the ring, and a process can either use it
+to access the CS or pass it along. We used a model created by [INSERT MODEL
+MAKER HERE][9] in order to model the algorithm, and a set of mutual exclusion
+test cases created by Fumiyoshi Kobayashi [10]. As expected, when we ran the
+tests against the model in Spin, safet and liveness were confirmed, since a
+process is only allowed to enter the CS if it holds the sole token, and the
+token is continually passed either immediately or after exiting the CS. However,
+these tests do not account for faults (lost token). In order to implement
+fault-tolerance, the algorithm could be modified by having processes send an
+“acknowledgement” upon receiving a token from a previous process.
 
 \subsection{Szymanski's Mutual Exclusion Algorithm}
 insert text here
 
 \subsection{Chandy and Lamport's Global Snapshot Algorithm}
-Chandy and Lamport's Global Snapshot Algorithm defines a method to take a global snapshot of a distributed system, which has proven to be a challenge due to the absence of shared memory and a shared clock. In this algorithm, the global snapshot is determined by collecting all process states (messages recorded by a given process prior to receiving a marker) and channel states (messages recorded by a processes after receiving a marker). All channels are assumed to be unidirectional and FIFO. The algorithm theoretically guarantees consistency (all recorded states are concurrent in the happened-before model). To test consistency, we used a model created by Mordecai Ben-Ari [11] that includes a sender process and a receiver process communicating over a channel. The two tests we extracted theoretically should have confirmed that $i)$ the last message sent was always equal to the message at the marker (correct channel states), and $ii)$ any message recorded was always less than the message at the marker (correct process states). Unfortunately, due to our previous unfamiliarity with the Promela language, both of our extracted tests continually resulted in assertion failures. We attribute this to our lack of experience with Promela due to the fact that this model has previously been verified in its original state without separate test files and parameter passing.
+Chandy and Lamport's Global Snapshot Algorithm defines a method to take a global
+snapshot of a distributed system, which has proven to be a challenge due to the
+absence of shared memory and a shared clock. In this algorithm, the global
+snapshot is determined by collecting all process states (messages recorded by a
+given process prior to receiving a marker) and channel states (messages recorded
+by a processes after receiving a marker). All channels are assumed to be
+unidirectional and FIFO. The algorithm theoretically guarantees consistency (all
+recorded states are concurrent in the happened-before model). To test
+consistency, we used a model created by Mordecai Ben-Ari [11] that includes a
+sender process and a receiver process communicating over a channel. The two
+tests we extracted theoretically should have confirmed that $i)$ the last
+message sent was always equal to the message at the marker (correct channel
+states), and $ii)$ any message recorded was always less than the message at the
+marker (correct process states). Unfortunately, due to our previous
+unfamiliarity with the Promela language, both of our extracted tests continually
+resulted in assertion failures. We attribute this to our lack of experience with
+Promela due to the fact that this model has previously been verified in its
+original state without separate test files and parameter passing.
 
 \section{Conclusions}
-Although not all of our Promela models were able to pass their respective verification tests, we were able to build and execute them using Spin. Given more time to learn the grammar and syntax of Promela, we believe that we could devise more robust tests that produce more accurate results.
+Although not all of our Promela models were able to pass their respective
+verification tests, we were able to build and execute them using Spin. Given
+more time to learn the grammar and syntax of Promela, we believe that we could
+devise more robust tests that produce more accurate results.
 
 \section{References}
 [ 1] http://spinroot.com/spin/Man/Manual.html \newline
