@@ -162,18 +162,38 @@
 \end{frame}
 
 
-
-\section{Lamport's}
+\section{Token Ring}
 \begin{frame}[c]
-    \frametitle{Lamport's}
+    \frametitle{Token Ring Algorithm}
     % \TeX\ \cite{knuth1989} and \LaTeX\ \cite{lamport1986} are great for equations
-    \begin{block}{An equation block}
-        \[ \vec{F} = m \vec{a} \]
-    \end{block}
     \begin{itemize}
-        \item Second instance of citations use short citation hyperlinked to original.
+		\item Simple and easily scalable
+		 \begin{itemize}
+          \item Pass token around ring of processes
+          \item Only processes with token can enter CS
+		  \item No Starvation
+        \end{itemize}
     \end{itemize}
+	
+	
+ \begin{figure}
+	 \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[scale=.30]{tokenring}
+      \captionof{figure}{Token Ring Algorithm}
+      \label{fig:Token Ring}
+    \end{minipage}
+\end{figure}
+	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Token Ring Implementation}
+	  \begin{multicols*}{3}
+    \lstinputlisting[language=Promela, basicstyle=\tiny]{../figs/tokenring.pml}
+  \end{multicols*}
+\end{frame}
+
 
 \section{Szymanski's}
 \begin{frame}[c]

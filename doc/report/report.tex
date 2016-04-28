@@ -59,6 +59,8 @@
 \newcommand{\bibent}{\noindent \hangindent 40pt}
 \newenvironment{workscited}{\newpage \begin{center} Works Cited \end{center}}{\newpage }
 
+\usepackage[backend=bibtex]{biblatex}
+\bibliography{../research}
 %
 %Begin document
 %
@@ -94,7 +96,7 @@ processes, message channels, and variables.
 The intent of this project is to verify four models of distributed algorithms
 written in Promela. We chose to model the Dining Philosophers Algorithm [2], the
 Token Ring Algorithm [3], Szymanski's Mutual Exclusion Algorithm [4], and Chandy
-and Lamport's Global Snapshot Algorithm [5]. We based our implementation heavily
+and Lamport's Global Snapshot Algorithm \cite{ch:01}. We based our implementation heavily
 upon existing implementations of these algorithms, modified to suit our specific
 uses.
 
