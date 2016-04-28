@@ -72,56 +72,50 @@ EE 360P \\
 
 %%%%Title
 \begin{center}
-\emph{TODO: Add abstract}
+\emph{\textbf{Abstract}: This report evaluates the use of Spin to verify Promela models of distributed systems. It was written as the final project for Professor Vijay Garg's Concurrent and Distributed Computing course at the University of Texas at Austin.}
 \end{center}
 
 %%%%Changes paragraph indentation to 0.5in
 \setlength{\parindent}{0.5in}
 %%%%Begin body of paper here
 \section{Introduction}
-Spin is a multi-threaded software verification tool that supports the high-level language Promela to specify models of systems [http://spinroot.com/spin/Man/Manual.html]. Given a model, Spin either performs random simulations of the system's execution or generates a C program that verifies the system's correctness properties, including deadlocks, unspecified receptions, and unexecutable blocks, as well as system invariants and other properties defined by the user. Promela allows the user to define processes, message channels, and variables.
+Spin is a multi-threaded software verification tool that supports the high-level language Promela to specify models of systems [1]. Given a model, Spin either performs random simulations of the system's execution or generates a C program that verifies the system's correctness properties, including deadlocks, unspecified receptions, and unexecutable blocks, as well as system invariants and other properties defined by the user. Promela allows the user to define processes, message channels, and variables.
 
 \section{Project Description}
-The intent of this project is to verify four models of distributed algorithms written in Promela. We chose to model the Dining Philosophers Algorithm [INSERT REFERENCE], the Token Ring Algorithm [INSERT REFERENCE], Szymanski's Mutual Exclusion Algorithm [INSERT REFERENCE], and Chandy and Lamport's Global Snapshot Algorithm [INSERT REFERENCE (Stormy \# 1)]. We based our implementation heavily upon existing implementations of these algorithms, modified to suit our specific uses.
+The intent of this project is to verify four models of distributed algorithms written in Promela. We chose to model the Dining Philosophers Algorithm [2], the Token Ring Algorithm [3], Szymanski's Mutual Exclusion Algorithm [4], and Chandy and Lamport's Global Snapshot Algorithm [INSERT REFERENCE (Stormy \# 1)]. We based our implementation heavily upon existing implementations of these algorithms, modified to suit our specific uses.
+
+Each of the four team members was responsible for researching one algorithm, finding a suitable model, and re-implementing it for use within our directory structure and build system. Eric created the majority of the build system and set up Docker [INSERT REFERENCE] to allow for our research to be reproducible, all of which is available on Github [INSERT REFERENCE]. William assisted with this process by helping to write some of the CMake files necessary to build the project. Eric focused his research on Szymanski's Algorithm, Daniel on the Token Ring Algorithm, William on Chandy and Lamport's Algorithm, and Nhan on the Dining Philosophers Algorithm.
+
+\section{Performance Results}
+We were able to successfully build all of the algorithms and run them in Spin, but only three out of the four passed the verification tests that we used. We modified all of the existing Promela models such that any defined constants are now able to be passed as parameters and that any assertions are extracted to separate test files.
 
 \subsection{Dining Philosophers Algorithm}
-The Dining Philosophers Algorithm is a widely used algorithm for regulating resource sharing between multiple processes. It uses "philosophers" and "forks" as analogies for the processes and resources. Let’s say there are $N$ philosophers, who only eat and think, sitting around a table. At the center of the table is a plate of spaghetti, and distributed between each philosopher are $N$ forks. If a philosopher wants to eat, he/she must get two forks (the ones on either side of that particular philosopher). If one of the forks is currently in use by another philosopher, then he/she must wait until both forks are available before eating. Once a philosopher is done eating, he/she releases the forks so that other philosophers may acquire them to start their meal.
-
-The algorithm to regulate this scenario includes an initial array of $N$ boolean variables (\texttt{bool forks[N]}), representing the respective statuses of resources (\texttt{true} if the resource is available, \texttt{false} if not). If a process with with identifier \texttt{pid} wants to access a resource, it first checks if \texttt{forks[pid] == true}. If \texttt{true}, the status changes to \texttt{false} to indicate that the process acquired the resource. However, if \texttt{forks[pid] ==  false}, the process must wait until that resource becomes free. Then the process must obtain its second resource, namely \texttt{forks[(pid + 1) \% N]}, repeating the same check as above.
-
-In every group, there is a philosopher "kinder" than the rest. This philosopher behaves almost identical to his fellow philosophers except in one aspect: when he/she attempts to get this second fork, if the attempt fails, he/she releases the first fork instead of waiting for the second fork to become available. Then the philosopher goes back to thinking and tries again later.
+The Dining Philosophers Algorithm is a widely used algorithm for guaranteeing mutual exclusion between multiple processes sharing resources. We used a model created by [INSERT MODEL MAKER HERE][INSERT REFERENCE] for verification. We used one test file for this model to ensure deadlock resolution. (EXPLAIN MORE HERE). When run in Spin, we had no assertion failures, so deadlock was verified as impossible. However, we determined that the algorithm was not free from starvation, since it is theoretically possible for the special process (the process that surrenders a held resource when a second resource is unavailable) to constantly surrender its held resource if another, faster process constantly gets access to the second resource prior to the special process. (SHOW RESULTS BELOW)
 
 \subsection{Token Ring Algorithm}
-In the Token Ring Algorithm, a ring of processes is constructed, and each process is assigned a specific position in the ring. Each process knows which process is next in line. Upon initialization, a token is given to a specific process on the ring. This token is then passed indefinitely around the ring, from process $k$ to process $k+1$. When a process receives a token, it checks to see if it wants to enter the critical section. If so, the process enters the CS, does the work it needs to, and then exits the section. If not, the process simply passes the token along to the next process. The process is not allowed to re-enter the critical section using the same token. 
-
-Proving that the Token Ring satisfies mutual exclusion is simple: since a process can only enter the CS if it has a token, and there is only one token, mutual exclusion must be upheld. This algorithm also satisfies Liveness because every process along the ring that wants to enter CS will have a chance to enter CS. 
-
-It is important to note that the Token Ring is not a self-stabilizing system. In addition, the basic version of the algorithm is not fault tolerant. However, it is possible to construct a fault-tolerant version of the Token Ring algorithm by having processes send an “acknowledgement” upon receiving a token from a previous process.
+Since mutual exclusion was a common the Many of our verification tests were based on models created by Fumiyoshi Kobayashi to ensure mutual exclusion in Lamport's starvation-free, nonatomic algorithm [www.ueda.info.waseda.ac.jp/~kobayashi/Promela/benchmark/index.html].
+In the Token Ring Algorithm, a ring of processes is constructed, and each process is assigned a specific position in the ring. A token for critical section (CS) access is passed around the ring, and a process can either use it to access the CS or pass it along. We used a model created by [INSERT MODEL MAKER HERE][INSERT REFERENCE] in order to model the algorithm, and a set of mutual exclusion test cases created by Fumiyoshi Kobayashi [www.ueda.info.waseda.ac.jp/~kobayashi/Promela/benchmark/index.html]. As expected, when we ran the tests against the model in Spin, safet and liveness were confirmed, since a process is only allowed to enter the CS if it holds the sole token, and the token is continually passed either immediately or after exiting the CS. However, these tests do not account for faults (lost token). In order to implement fault-tolerance, the algorithm could be modified by having processes send an “acknowledgement” upon receiving a token from a previous process.
 
 \subsection{Szymanski's Mutual Exclusion Algorithm}
 insert text here
+
 \subsection{Chandy and Lamport's Global Snapshot Algorithm}
-Chandy and Lamport's Global Snapshot Algorithm defines a method to take a global snapshot of a distributed system, which has proven to be a challenge due to the absence of shared memory and a shared clock [\textbf{TODO}: http://www.cfdvs.iitb.ac.in/projects/CourseProjs/Y2K2/naren.ps]. In this algorithm, the global snapshot is determined by collecting all process states (messages sent and received by a given process) and channel states (messages in transit). Processes record their own states and use markers (special types of messages) to deduce the channel states. All channels are assumed to be unidirectional and FIFO.
-
-For any given process, for each of its outbound channels, the process sends a marker after recording its state and before sending any subsequent messages. When a marker is received by another process, if such a process has not recorded its own state, it does so with its current status, and designates the channel as empty (since this must have been the case for the message have been received prior to the local snapshot). Otherwise, the receiving process records its channel state as the sequence of messages it received after recording its state and prior to the reception of the marker. This recorded sequence of messages reflects the channel state.
-
-The purpose of model-checking the Chandy-Lamport algorithm is to verify that each state recorded is consistent, i.e. $$\forall i,j:G[i]||G[j],$$ where $G$ is a set of local states with exactly one local state from each process, $G[i]$ is the local state from process $P_i$, and $G[j]$ is the local state for process $P_j$ [\textbf{TODO}: citation from Garg book].
-
-\subsection{Division of Labor}
-Each of the four team members was responsible for researching one algorithm, finding a suitable model, and re-implementing it for use within our directory structure and build system. Eric created the majority of the build system and set up Docker [INSERT REFERENCE] to allow for our research to be reproducible. William assisted with this process by helping to write some of the CMake files necessary to build the project. Eric focused his research on Szymanski's Algorithm, Daniel on the Token Ring Algorithm, William on Chandy and Lamport's Algorithm, and Nhan on the Dining Philosophers Algorithm.
-
-\section{Performance Results}
-\subsection{Dining Philosophers Algorithm}
-For the Dining Philosophers Algorithm, we used a model created by [INSERT MODEL MAKER HERE][INSERT REFERENCE]. For verification, we needed to prove that deadlock was not possible. We used a 
-A common problem that pops up in any discussion of Dining Philosopher problem/algorithm is the possibility of deadlock, when all the philosophers pick up a fork and forever wait on a someone (nonexistent) to finish with their other fork. In this case, the special philosopher circumvents the issue by giving up both fork if he/she cannot get both forks, which allows another philosopher to finish eating and surrender its fork for another philosopher to start eating. Spins demonstrates that this technique does in fact solve deadlock.
-Unfortunately, this algorithm does not prevent starvation. The philosopher that share the second fork with this special philosopher could in theory manage to get the fork before the special philosopher, and thus forever make that special philosopher surrender his/her forks.
-\subsection{Token Ring Algorithm}
-\subsection{Szymanski's Mutual Exclusion Algorithm}
-\subsection{Chandy and Lamport's Global Snapshot Algorithm}
-To verify Chandy and Lamport's Global Snapshot Algorithm, we used the Promela model created originally by Mordecai Ben-Ari in Principles of the Spin Model Checker [INSERT REFERENCE (Stormy \#2)]. Since a global state is considered consistent if any two local states of two separate processes are effectively concurrent during that global state, the model simply consists of one sender and one receiver. All that is needed to verify a consistent state is to show that a the channel and process states fit the definition of consistent, i.e. that all messages sent prior to the marker are received, and that any messages sent after the marker are recorded as a part of the channel's state. We attempted to verify this using two test files: the first test's intent was to ensure that the last message sent was always equal to the message at the marker (verifying correct channel states), and that any message recorded was always less than the message at the marker (verifying correct process states). We modified Ben-Ari's original model by allowing for a custom message size and channel number and by extracting the tests to separate files. Unfortunately, due to our previous unfamiliarity with the Promela language, both of our tests continually resulted in assertion failures.
+Chandy and Lamport's Global Snapshot Algorithm defines a method to take a global snapshot of a distributed system, which has proven to be a challenge due to the absence of shared memory and a shared clock. In this algorithm, the global snapshot is determined by collecting all process states (messages recorded by a given process prior to receiving a marker) and channel states (messages recorded by a processes after receiving a marker). All channels are assumed to be unidirectional and FIFO. The algorithm theoretically guarantees consistency (all recorded states are concurrent in the happened-before model). To test consistency, we used a model created by Mordecai Ben-Ari [INSERT REFERENCE (Stormy \#2)] that includes a sender process and a receiver process communicating over a channel. The two tests we extracted theoretically should have confirmed that $i)$ the last message sent was always equal to the message at the marker (correct channel states), and $ii)$ any message recorded was always less than the message at the marker (correct process states). Unfortunately, due to our previous unfamiliarity with the Promela language, both of our extracted tests continually resulted in assertion failures. We attribute this to our lack of experience with Promela due to the fact that this model has previously been verified in its original state without separate test files and parameter passing.
 
 \section{Conclusions}
+Although not all of our Promela models were able to pass their respective verification tests, we were able to build and execute them using Spin. Given more time to learn the grammar and syntax of Promela, we believe that we could devise more robust tests that produce more accurate results.
 
+\section{References}
+[ 1] http://spinroot.com/spin/Man/Manual.html\\
+[ 2] DINING PHILOSOPHER INFORMATION SOURCE\\
+[ 3] TOKEN RING INFORMATION SOURCE\\
+[ 4] SZYMANSKI INFORMATION SOURCE\\
+[ 5]
+[ 6]
+[ 7]
+[ 8]
+[ 9]
+[10]
 \end{flushleft}
 \end{document}
 \}
