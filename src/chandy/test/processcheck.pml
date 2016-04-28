@@ -2,6 +2,6 @@
 
 never {
   do
-  :: assert(! invalidprocessstate);
+  :: assert(invalidprocessstate);
   od;
 }
