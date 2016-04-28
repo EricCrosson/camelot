@@ -4,9 +4,7 @@ start:
     local_section();
 
     /* 2. PROLOG */
-    begin_state_change
     intent[i] = true;
-    end_state_change
 
 started_protocol:
     skip;
@@ -17,11 +15,9 @@ started_protocol:
       count(1,1,1) == 0);
 
     /* 4. Enter waiting room */
-    begin_state_change
     door_in[i] = true;
-    end_state_change
 
-TODO: keep numbering numbnuts
+
 
 
 anteroom_check:
@@ -29,9 +25,8 @@ anteroom_check:
       :: (count(1,0,0) +
             count(1,0,1) > 0) ->
         {
-            begin_state_change
+            /* State 2  */
             intent[i] = false;
-            end_state_change
 
         in_anteroom:
             ((count(0,0,1) +
@@ -40,20 +35,16 @@ anteroom_check:
               count(1,1,1) > 0)
             );
 
-            begin_state_change
+            /* State 3 */
             intent[i] = true;
-            end_state_change
         }
       :: else
     fi;
 
 
-
     /* . Proceed into CS when
      * it is your turn */
-    begin_state_change
     door_out[i] = true;
-    end_state_change
 
     wait_forall(k, i + 1, N,
       (!door_in[k] || door_out[k]));
@@ -61,13 +52,12 @@ anteroom_check:
     wait_forall(k, 0, i,
       (!door_in[k]));
 
+ critical_section:
     /* . SEKCJA KRYTYCZNA */
 
- critical_section:
-    /* CS is thread-specific
-     * and thus omitted here */
+    critical_section();
 
-    /* EPILOG */
+    /* . EPILOG */
     door_out[i] = false;
     door_in[i] = false;
     intent[i] = false;
