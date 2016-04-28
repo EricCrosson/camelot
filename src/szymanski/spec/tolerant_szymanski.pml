@@ -18,6 +18,7 @@
 #define LTL 999
 #endif
 
+byte in_cs;
 /* 02 */        bool intent[N], door_in[N], door_out[N];
 /* 03 */        #define i _pid
 
@@ -39,27 +40,27 @@
                     local_section();
 
                     /* PROLOG */
-                    begin_change
+                    begin_state_change
 /* 07 */            intent[i] = true;
-                    end_change
+                    end_state_change
                 started_protocol:
                     skip;
 
                     /* \forall_k !(intent[k] && door_in[k]) \iff \neq \exists_k (intent[k] && door_in[k]) \iff #(intent && door_in) = 0 */
                     (count(1,1,0) + count(1,1,1) == 0);
 
-                    begin_change
+                    begin_state_change
 /* 08 */            door_in[i] = true;
-                    end_change
+                    end_state_change
 
                 anteroom_check:
                     if
                       /* \exists_k (intent[k] && !door_in[k]) \iff #(intent && !door_in) > 0 */
                       :: (count(1,0,0) + count(1,0,1) > 0) ->
 /* 09 */                {
-                            begin_change
+                            begin_state_change
 /* 10 */                    intent[i] = false;
-                            end_change
+                            end_state_change
 
                         in_anteroom:
                             (
@@ -71,9 +72,9 @@
                             (count(1,0,0) + count(1,0,1) == 0)
                             );
 
-                            begin_change
+                            begin_state_change
 /* 11 */                    intent[i] = true;
-                            end_change
+                            end_state_change
 
                             if
                               /* \neg \exists_k door_out[k] \iff #(door_out) == 0 */
@@ -85,9 +86,9 @@
                       :: else
                     fi;
 
-                    begin_change
+                    begin_state_change
 /* 13 */            door_out[i] = true;
-                    end_change
+                    end_state_change
 
                     /* \forall_k (k > i \implies (!door_in || door_out)) */
                     wait_forall(k, i + 1, N, (!door_in[k] || door_out[k]));
@@ -97,27 +98,29 @@
 
                     /* SEKCJA KRYTYCZNA */
 
+                    in_cs++;
                 critical_section:
+                    in_cs--;
                     skip;
 
                     /* EPILOG */
 
 #if EPILOGUE == 321
-                    begin_change
+                    begin_state_change
 /* 14 */            door_out[i] = false;
                     interrupt_change
 /* 15 */            door_in[i] = false;
                     interrupt_change
 /* 16 */            intent[i] = false;
-                    end_change
+                    end_state_change
 #elif EPILOGUE == 312
-                    begin_change
+                    begin_state_change
                     door_out[i] = false;
                     interrupt_change
                     intent[i] = false;
                     interrupt_change
                     door_in[i] = false;
-                    end_change
+                    end_state_change
 #else
 #error "epilogue protocol not defined"
 #endif

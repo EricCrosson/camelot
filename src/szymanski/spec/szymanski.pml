@@ -18,6 +18,7 @@
 #define LTL 999
 #endif
 
+byte in_cs;
 /* 02 */        bool intent[N], door_in[N], door_out[N];
 /* 03 */        #define i _pid
 
@@ -87,7 +88,9 @@
 
                     /* SEKCJA KRYTYCZNA */
 
+                    in_cs++;
                 critical_section:
+                    in_cs--;
                     skip;
 
                     /* EPILOG */
