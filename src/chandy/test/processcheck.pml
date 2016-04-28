@@ -1,7 +1,10 @@
 #define invalidprocessstate   (lastSent != messageAtMarker)
 
 never {
-  do
-  :: recorded -> assert(!invalidprocessstate);
-  od;
+T0_init:
+    if 
+      :: invalidprocessstate -> goto accept
+      :: else -> goto T0_init
+    fi;
+  accept:
 }

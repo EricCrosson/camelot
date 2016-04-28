@@ -1,7 +1,10 @@
 #define invalidchannelstate   (messageAtRecord < lastReceived)
 
 never {
-  do
-  :: recorded -> assert(!invalidchannelstate);
-  od;
+  T0_init:
+    if 
+      :: invalidchannelstate -> goto accept
+      :: else -> goto T0_init
+    fi;
+  accept:
 }
