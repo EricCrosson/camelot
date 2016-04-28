@@ -1,13 +1,13 @@
-#ifndef CHANNEL_SIZE
-#define CHANNEL_SIZE 4
+#ifndef N
+#define N 4
 #endif
 
 #ifndef  NUM_MESSAGES
-#define  NUM_MESSAGES 6
+#define  NUM_MESSAGES N+2
 #endif
 
 mtype { message, marker };
-chan ch = [CHANNEL_SIZE] of { mtype, byte };
+chan ch = [N] of { mtype, byte };
 
 byte lastSent, lastReceived,
         messageAtRecord, messageAtMarker;
@@ -40,7 +40,4 @@ active proctype Receiver() {
        messageAtRecord = lastReceived;
        recorded = true
   od
-
-  assert(lastSent == messageAtMarker);
-  assert(messageAtRecord >= lastReceived)
 }
