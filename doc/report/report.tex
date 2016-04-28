@@ -72,14 +72,27 @@ Class \\
 
 %%%%Title
 \begin{center}
-\emph{Report}
+\emph{Dining Philosophers}
 \end{center}
 
 %%%%Changes paragraph indentation to 0.5in
 \setlength{\parindent}{0.5in}
 %%%%Begin body of paper here
 
-TODO
+\textbf{Introduction}
+\newline
+Dining Philosopher is a widely used Let’s say there are some N philosophers sitting around a table. Philosophers only eat and think. At the center of the table is a plate of spaghetti and N forks (same as the number of philosophers, one between each philosopher sitting at the table). If a philosopher wants to eat, he/she must get two forks (the ones on either side of the philosopher). If one of the forks is currently in use by another philosopher, then he/she must wait until both forks are available before eating. Once a philosopher is done eating, he/she releases the forks used for another philosopher to acquire it and start their meal.
+
+\textbf{The Algorithm}
+\newline
+There is an initial array of N booleans (call it bool forks[N]), representing the forks on the table (true if the fork is available, false if not). If a process with PID wants to eat, he first checks if (forks[pid] == true). If true, the fork changes to false to indicate that the philosopher acquired the fork. However, it forks[pid] ==  false, the philosopher must wait until that fork becomes free. Then the philosopher must get his/her second fork, namely forks[(pid + 1) % N], repeating the same check as above.
+In every group, there is a philosopher kinder than the rest. This philosopher behaves almost identical to his fellow philosophers except in one aspect: when he/she attempts to get this second fork, if the attempt fails, he/she releases the first fork instead of waiting for the second fork to become available. Then the philosopher goes back to thinking and tries again later.
+
+\textbf{Evaluation}
+\newline
+A common problem with that pops up in any discussion of Dining Philosopher problem/algorithm is the possibility of deadlock, when all the philosophers pick up a fork and forever waits on someone to finish with their other fork (but everyone is waiting so...). The special philosopher circumvents the issue by giving up both fork if he/she cannot get both forks, which allows another philosopher to finish eating and surrender its fork for another philosopher to start eating. Spins demonstrates that this technique does in fact solve deadlock.
+Unfortunately, this algorithm does not prevent starvation. The philosopher that share the second fork with this special philosopher could in theory manage to get the fork before the special philosopher, and thus forever make that special philosopher surrender his/her forks.
+
 
 \end{flushleft}
 \end{document}
