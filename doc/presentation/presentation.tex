@@ -58,14 +58,9 @@
 \section{Promela Overview}
 \begin{frame}
     \frametitle{Promela Overview}
-    Spin is a multi-threaded software verification tool that supports the
-    high-level language Promela to specify models of systems.
-    \begin{itemize}
-    \item Promela allows the user to create parallel programs that define
-      processes, message channels, and variables.
-    \item From the promela program, Spin can then verify various system
-      correctness properties as well as user-defined properties
-    \end{itemize}
+    - Promela is \textbf{Pr}ocess \textbf{Mode}ling \textbf{La}nguage
+    - Spin compiles Promela into C
+    - C executables assert system invariants at each simulated state
 \end{frame}
 
 \section{Dining Philosophers}
