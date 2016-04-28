@@ -42,7 +42,7 @@ anteroom_check:
     fi;
 
 
-    /* . Proceed into CS when
+    /* Proceed into CS when
      * it is your turn */
     door_out[i] = true;
 
@@ -53,11 +53,11 @@ anteroom_check:
       (!door_in[k]));
 
  critical_section:
-    /* . SEKCJA KRYTYCZNA */
+    /* SEKCJA KRYTYCZNA */
 
     critical_section();
 
-    /* . EPILOG */
+    /* EPILOG */
     door_out[i] = false;
     door_in[i] = false;
     intent[i] = false;
