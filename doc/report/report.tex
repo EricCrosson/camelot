@@ -111,6 +111,22 @@ The purpose of model-checking the Chandy-Lamport algorithm is to verify that eac
 \subsection{Chandy and Lamport's Global Snapshot Algorithm}
 To verify Chandy and Lamport's Global Snapshot Algorithm, we used the Promela model created originally by Mordecai Ben-Ari in Principles of the Spin Model Checker [INSERT REFERENCE]. Since a global state is considered consistent if any two local states of two separate processes are effectively concurrent during that global state, the model simply consists of one \texttt{Sender} and one \texttt{Receiver} proctype. All that is needed to verify a consistent state is to show that the local states of the \texttt{Sender} and the \texttt{Receiver} fit the definition of consistent, i.e. that all messages sent prior to the marker are received, and that any messages sent after the marker are recorded as a part of the channel's state. These is checked by the two assert statements \texttt{assert (lastSent == messageAtMarker)} and \texttt{assert (messageAtRecord <= messageAtMarker)}. Although Ben-Ari suggested that having a channel size of 4 and a total message number of 6 would be sufficient in verifying the model, our build system allowed for us to input custom parameters if desired. The model as seen after being evaluated in iSpin is shown below.
 [Spin Book, pages 198-200]
+
+\section{Token Ring}
+\textbf{Introduction}
+\newline
+The Token Ring is simple and easily scalable approach to achieving mutual exclusion in a distributed system. It was first pioneered by IBM in the 1980s, and was widely used for as a communications protocol for local area networks. 
+
+\textbf{The Algorithm}
+\newline
+A ring of processes is constructed, and each process is assigned a specific position in the ring. Each process knows which process is next in line. Upon initialization, a token is given to a specific process on the ring. This token is then passed indefinitely around the ring, from process k to process k+1. 
+When a process receives a token, it checks to see if it wants to enter the Critical Section. If so, the process enters the CS, does the work it needs to, and then exits the section. If not, the process simply passes the token along to the next process. The process is not allowed to re-enter the critical section using the same token. 
+
+\textbf{Verification}
+\newline
+Proving that the Token Ring satisfies mutual exclusion is simple. Since a process can only enter the CS if it has a token, and there is only one token, mutual exclusion must be upheld. This algorithm also satisfies Liveness because every process along the ring that wants to enter CS will have a chance to enter CS. 
+It is important to note that the Token Ring is not a self-stabilizing system. In addition, the basic version of the algorithm is not fault tolerant. However, it is possible to construct a fault-tolerant version of the Token Ring algorithm by having processes send an “acknowledgement” upon receiving a token from a previous process. 
+
 \section{Conclusions}
 
 \end{flushleft}
