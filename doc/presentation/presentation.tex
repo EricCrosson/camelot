@@ -162,35 +162,26 @@
 \end{frame}
 
 
-\section{Token Ring}
+\section{Chandy and Lamport}
 \begin{frame}[c]
-    \frametitle{Token Ring Algorithm}
+    \frametitle{Chandy and Lamport}
     % \TeX\ \cite{knuth1989} and \LaTeX\ \cite{lamport1986} are great for equations
     \begin{itemize}
-		\item Simple and easily scalable
+		\item Gurarantees consistent global snapshots
 		 \begin{itemize}
-          \item Pass token around ring of processes
-          \item Only processes with token can enter CS
-		  \item No Starvation
+          \item Happened-before model
+          \item Uses markers
+	\item Promela model verification based on markers
         \end{itemize}
     \end{itemize}
 	
 	
- \begin{figure}
-	 \begin{minipage}{.5\textwidth}
-      \centering
-      \includegraphics[scale=.30]{tokenring}
-      \captionof{figure}{Token Ring Algorithm}
-      \label{fig:Token Ring}
-    \end{minipage}
-\end{figure}
-	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Token Ring Implementation}
+	\frametitle{Chandy Implementation}
 	  \begin{multicols*}{3}
-    \lstinputlisting[language=Promela, basicstyle=\tiny]{../figs/tokenring.pml}
+    \lstinputlisting[language=Promela, basicstyle=\tiny]{../figs/chandy.pml}
   \end{multicols*}
 \end{frame}
 
