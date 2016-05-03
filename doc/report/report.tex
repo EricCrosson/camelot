@@ -74,10 +74,10 @@ EE 360P \\
 
 %%%%Title
 \begin{center}
-  \emph{\textbf{Abstract}: This report evaluates the use of Spin to verify
-    Promela models of distributed systems. It was written as the final project
-    for Professor Vijay Garg's Concurrent and Distributed Computing course at
-    the University of Texas at Austin.}
+  \emph{\textbf{Abstract}: This report presents the analysis of several popular
+    distributed algorithms through the use of the Promela modeling language.  It
+    was written as the final project for Professor Vijay Garg's Concurrent and
+    Distributed Computing course at the University of Texas at Austin.}
 \end{center}
 
 %%%%Changes paragraph indentation to 0.5in
@@ -85,17 +85,17 @@ EE 360P \\
 %%%%Begin body of paper here
 \section{Introduction}
 Spin is a multi-threaded software verification tool that supports the high-level
-language Promela to specify models of systems \cite{spinroot}. Given a model, Spin either
-performs random simulations of the system's execution or generates a C program
-that verifies the system's correctness properties, including deadlocks,
-unspecified receptions, and unexecutable blocks, as well as system invariants
-and other properties defined by the user. Promela allows the user to define
-processes, message channels, and variables.
+language Promela to specify meta-level models of systems \cite{spinroot}. Given
+a Promela model, Spin either performs random simulations of the system's
+execution or generates a C program that exhaustively verifies that system's
+correctness properties, including deadlocks, unspecified receptions, and
+unexecutable blocks, as well as system invariants and other properties defined
+by the user.
 
 \section{Project Description}
 The intent of this project is to verify four models of distributed algorithms
 written in Promela. We chose to model the Dining Philosophers Algorithm
-\cite{din:phil}, the Token Ring Algorithm [3], Szymanski's Mutual
+\cite{din:phil}, the Token Ring Algorithm \cite{toking}, Szymanski's Mutual
 Exclusion Algorithm \cite{szymanski:info}, and Chandy and Lamport's Global
 Snapshot Algorithm \cite{ch:01}. We based our implementation heavily upon
 existing implementations of these algorithms, modified to suit our specific
@@ -122,31 +122,48 @@ separate test files.
 The Dining Philosophers Algorithm is a widely used algorithm for guaranteeing
 mutual exclusion between multiple processes sharing resources. We used a model
 created by oflynned \cite{din:phil} for verification. We used one test file for
-this model to ensure deadlock resolution. (TODO: EXPLAIN MORE HERE). When run in
+this model to ensure deadlock resolution. When run in
 Spin, we had no assertion failures, so deadlock was verified as
 impossible. However, we determined that the algorithm was not free from
 starvation, since it is theoretically possible for the special process (the
 process that surrenders a held resource when a second resource is unavailable)
 to constantly surrender its held resource if another, faster process constantly
-gets access to the second resource prior to the special process. (TODO: SHOW
-RESULTS BELOW)
+gets access to the second resource prior to the special process.
+
 
 \subsection{Token Ring Algorithm}
 In the Token Ring Algorithm, a ring of processes is constructed, and each
 process is assigned a specific position in the ring. A token for critical
 section (CS) access is passed around the ring, and a process can either use it
-to access the CS or pass it along. We used a model created by [INSERT MODEL
-MAKER HERE][9] in order to model the algorithm, and a set of mutual exclusion
-test cases created by Fumiyoshi Kobayashi \cite{kobayashi}. As expected, when we
-ran the tests against the model in Spin, safet and liveness were confirmed,
-since a process is only allowed to enter the CS if it holds the sole token, and
-the token is continually passed either immediately or after exiting the
-CS. However, these tests do not account for faults (lost token). In order to
-implement fault-tolerance, the algorithm could be modified by having processes
-send an “acknowledgement” upon receiving a token from a previous process.
+to access the CS or pass it along. We used a model created by \cite{toking} in
+order to model the algorithm, and a set of mutual exclusion test cases created
+by Fumiyoshi Kobayashi \cite{kobayashi}. As expected, when we ran the tests
+against the model in Spin, safet and liveness were confirmed, since a process is
+only allowed to enter the CS if it holds the sole token, and the token is
+continually passed either immediately or after exiting the CS. However, these
+tests do not account for faults (lost token). In order to implement
+fault-tolerance, the algorithm could be modified by having processes send an
+“acknowledgement” upon receiving a token from a previous process.
 
 \subsection{Szymanski's Mutual Exclusion Algorithm}
-TODO
+Szymanski solved Lamport's open problem whether there exists an algorithm with a
+constant number of communication bits per process that satisfies every
+reasonable fairness and fault-tolerance requirement that Lamport's solution to
+the mutual exclusion problem satisfies. Szymanski realized that a 5 state model
+is sufficient to keep track of processes as they prepare for and exit the
+critical section; running these states through a Karnaugh map yields a mutual
+exclusion solution that requires only three boolean variables per process. The
+lack of global variables means a fault tolerant version of this algorithm is
+achievable, since there is no danger of an alive process reading a stale (dead)
+process's global state variable.
+
+Szymanski's algorithm does satisfy the proofs listed in \cite{szymanski:acm},
+namely safety, liveness, and absence of deadlocks. The absence of global
+variables in Szymanski's implementation yielded a fault-tolerant version of the
+algorithm that did not exhibit the liveness property as asserted in the proof's
+publication. Szymanski was close though; Promela shows that transposing the
+order of the epilogue of the critical section is enough to prove liveness and
+thus solve Lamport's problem.
 
 \subsection{Chandy and Lamport's Global Snapshot Algorithm}
 Chandy and Lamport's Global Snapshot Algorithm defines a method to take a global
@@ -157,16 +174,17 @@ given process prior to receiving a marker) and channel states (messages recorded
 by a processes after receiving a marker). All channels are assumed to be
 unidirectional and FIFO. The algorithm theoretically guarantees consistency (all
 recorded states are concurrent in the happened-before model). To test
-consistency, we used a model created by Mordecai Ben-Ari \cite{ben-ari} that includes a
-sender process and a receiver process communicating over a channel. The two
-tests we extracted theoretically should have confirmed that $i)$ the last
-message sent was always equal to the message at the marker (correct channel
-states), and $ii)$ any message recorded was always less than the message at the
-marker (correct process states). Unfortunately, due to our previous
-unfamiliarity with the Promela language, both of our extracted tests continually
-resulted in assertion failures. We attribute this to our lack of experience with
-Promela due to the fact that this model has previously been verified in its
-original state without separate test files and parameter passing.
+consistency, we used a model created by Mordecai Ben-Ari \cite{ben-ari} that
+includes a sender process and a receiver process communicating over a
+channel. The two tests we extracted theoretically should have confirmed that
+$i)$ the last message sent was always equal to the message at the marker
+(correct channel states), and $ii)$ any message recorded was always less than
+the message at the marker (correct process states). Unfortunately, due to our
+previous unfamiliarity with the Promela language, both of our extracted tests
+continually resulted in assertion failures. We attribute this to our lack of
+experience with Promela due to the fact that this model has previously been
+verified in its original state without separate test files and parameter
+passing.
 
 \section{Conclusions}
 Although not all of our Promela models were able to pass their respective
@@ -174,13 +192,7 @@ verification tests, we were able to build and execute them using Spin. Given
 more time to learn the grammar and syntax of Promela, we believe that we could
 devise more robust tests that produce more accurate results.
 
-\section{References}
-[ 3] TOKEN RING INFORMATION SOURCE \newline
-[ 5] CHANDY INFORMATION SOURCE (STORMY FIRST CITATION) \newline
-[ 8] LINK TO DINING PHILOSOPHER MODEL
-[ 9] LINK TO TOKEN RING MODEL \newline
-[11] CHANDY MODEL LINK (STORMY SECOND CITATION [i think])    ben-ari TODO:
-insert in bibtex
+\printbibliography
 \end{flushleft}
 \end{document}
 \}
