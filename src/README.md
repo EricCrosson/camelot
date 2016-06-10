@@ -27,8 +27,7 @@ Prebuilt environment
 --------------------
 
 [Install docker]. Executing the following code from in this directory will pull
-down the build environment, mount your current working directory, and build the
-cmake project
+down the build environment and build the cmake project
 
     docker run -tv $(pwd):/data hamroctopus/spin
 
