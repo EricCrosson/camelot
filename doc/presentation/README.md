@@ -5,7 +5,7 @@ Presentation
 [John T Foster] for the [publication] of an [official]
 [Cockrell School of Engineering] [beamer template].
 
-  [This presentation]: presentation.pdf
+  [This presentation]: https://github.com/stormosson/camelot/raw/deliverables/presentation.pdf
   [John T Foster]: http://johnfoster.pge.utexas.edu/
   [publication]: http://johntfoster.github.io/posts/cockrell-school-beamer-template.html
   [official]: http://johntfoster.github.io/posts/cockrell-school-beamer-template.html

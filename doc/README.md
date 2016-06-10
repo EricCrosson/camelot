@@ -32,8 +32,7 @@ Prebuilt environment
 your locally cloned version of this repository, and give you a shell in the
 docker container.
 
-    docker pull hamroctopus/latex-cmake
-    docker run -it -v </path/to/local/repo>:/data hamroctopus/latex-cmake
+    docker run -it -v </path/to/local/repo>:/data hamroctopus/latex-cmake /bin/bash
 
 
 Navigate to `/data/doc/` and proceed to the [build instructions].

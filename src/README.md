@@ -26,15 +26,14 @@ on a [manual setup].
 Prebuilt environment
 --------------------
 
-[Install docker]. The following code will pull down the build environment, mount
-your locally cloned version of this repository, and give you a shell in the
-docker container.
+[Install docker]. Executing the following code from in this directory will pull
+down the build environment, mount your current working directory, and build the
+cmake project
 
-    docker pull hamroctopus/spin
-    docker run -it -v </path/to/local/repo>:/data hamroctopus/spin
+    docker run -tv $(pwd):/data hamroctopus/spin
 
 
-Navigate to `/data/src/` and proceed to the [build instructions].
+Binaries will be placed in the `build/bin` directory.
 
 
 Manual environment
