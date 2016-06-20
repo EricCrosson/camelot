@@ -12,14 +12,14 @@ before_install:
   - git submodule update --init --recursive
 
 install:
-  - docker pull hamroctopus/spin
-  - docker pull hamroctopus/latex-cmake
+  - docker pull hamroctopus/spin:6.4.5
+  - docker pull hamroctopus/latex-cmake:3.4.0
 
 script:
   - mkdir -p src/build doc/report/build doc/presentation/build
-  - docker run -t -v $(pwd):/data hamroctopus/spin "cd /data/src/build && cmake .. && make"
-  - docker run -t -v $(pwd):/data hamroctopus/latex-cmake "cd doc/report/build && cmake .. && make"
-  - docker run -t -v $(pwd):/data hamroctopus/latex-cmake "cd doc/presentation/build && cmake .. && make"
+  - docker run -t -v $(pwd):/data hamroctopus/spin:6.4.5 "cd /data/src/build && cmake .. && make"
+  - docker run -t -v $(pwd):/data hamroctopus/latex-cmake:3.4.0 "cd doc/report/build && cmake .. && make"
+  - docker run -t -v $(pwd):/data hamroctopus/latex-cmake:3.4.0 "cd doc/presentation/build && cmake .. && make"
 
 after_success:
   - mkdir $HOME/deliverables && cp -fv doc/report/build/report.pdf doc/presentation/build/presentation.pdf $HOME/deliverables
